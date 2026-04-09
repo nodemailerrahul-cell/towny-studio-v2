@@ -19,6 +19,8 @@ const marqueeItems = [
   'Luxury Homes',
 ];
 
+
+
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-black text-white">

@@ -1,74 +1,135 @@
-'use client'
+"use client";
 
-import { motion, useReducedMotion } from 'framer-motion'
-import { Star } from 'lucide-react'
+import React from "react";
+import { motion } from "motion/react";
+import { Star } from "lucide-react";
 
-const testimonials = [
+type Testimonial = {
+  name: string;
+  role: string;
+  text: string;
+  rating: number;
+};
+
+const testimonials: Testimonial[] = [
   {
     name: 'Priya Sharma',
     role: 'Homeowner',
-    content: 'Towny Studio transformed our home into a masterpiece. Their attention to detail and understanding of our vision was exceptional.',
+    text: 'Towny Studio transformed our home into a masterpiece. Their attention to detail and understanding of our vision was exceptional.',
     rating: 5,
   },
   {
     name: 'Rajesh Kumar',
     role: 'Business Owner',
-    content: 'The commercial space they designed for us is not just beautiful, it\'s functional and has significantly improved our business image.',
+    text: 'The commercial space they designed for us is not just beautiful, it\'s functional and has significantly improved our business image.',
     rating: 5,
   },
   {
     name: 'Anjali Mehta',
     role: 'Architect',
-    content: 'Working with Towny Studio was a pleasure. Their professionalism and creative approach to design is truly inspiring.',
+    text: 'Working with Towny Studio was a pleasure. Their professionalism and creative approach to design is truly inspiring.',
     rating: 5,
   },
-]
+  {
+    name: 'Vikram Patel',
+    role: 'Restaurant Owner',
+    text: 'They completely reimagined our restaurant space. The ambiance they created has been a huge draw for our customers.',
+    rating: 5,
+  },
+  {
+    name: 'Sneha Reddy',
+    role: 'Interior Enthusiast',
+    text: 'From concept to execution, every step was seamless. Our living room is now the highlight of our home.',
+    rating: 5,
+  },
+  {
+    name: 'Arjun Nair',
+    role: 'Tech CEO',
+    text: 'Our new office space perfectly reflects our brand. The team at Towny understood exactly what we needed.',
+    rating: 5,
+  },
+];
+
+function TestimonialsColumn({
+  className,
+  testimonials,
+  duration = 12,
+}: {
+  className?: string;
+  testimonials: Testimonial[];
+  duration?: number;
+}) {
+  return (
+    <div className={className}>
+      <motion.div
+        animate={{ translateY: "-50%" }}
+        transition={{
+          duration,
+          repeat: Infinity,
+          ease: "linear",
+          repeatType: "loop",
+        }}
+        className="flex flex-col gap-6 pb-6"
+      >
+        {[...Array(2)].map((_, index) => (
+          <React.Fragment key={index}>
+            {testimonials.map((t, i) => (
+              <div
+                key={i}
+                className="p-8 rounded-3xl border bg-card shadow-lg shadow-primary/10 max-w-xs"
+              >
+                {/* Rating */}
+                <div className="flex gap-1 mb-3">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-primary text-primary"
+                    />
+                  ))}
+                </div>
+
+                {/* Text */}
+                <p className="text-sm opacity-80 leading-relaxed">{t.text}</p>
+
+                {/* User */}
+                <div className="flex items-center gap-3 mt-5">
+                  {/* Letter Avatar */}
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center font-semibold">
+                    {t.name.charAt(0)}
+                  </div>
+
+                  <div>
+                    <p className="font-medium leading-tight">{t.name}</p>
+                    <p className="text-xs opacity-60">{t.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </React.Fragment>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
 
 export function Testimonials() {
-  const shouldReduceMotion = useReducedMotion()
-
   return (
-    <section className="py-20 lg:py-32 bg-black">
+    <section className="py-20 lg:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-serif font-bold mb-4 text-balance">
             What Our Clients Say
           </h2>
           <p className="text-lg text-white/60 max-w-2xl mx-auto text-balance">
-            {'Don\'t just take our word for it - hear from our satisfied clients'}
+            Don&apos;t just take our word for it — hear from our satisfied clients
           </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : index * 0.1 }}
-              className="bg-card border border-white/10 rounded-3xl p-8 hover:border-primary/50 transition-colors"
-            >
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-primary text-primary" />
-                ))}
-              </div>
-              <p className="text-white/80 mb-6 leading-relaxed">{testimonial.content}</p>
-              <div>
-                <p className="font-semibold text-white">{testimonial.name}</p>
-                <p className="text-sm text-white/50">{testimonial.role}</p>
-              </div>
-            </motion.div>
-          ))}
+        </div>
+        <div className="flex justify-center gap-6 max-h-[600px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]">
+          <TestimonialsColumn testimonials={testimonials.slice(0, 2)} duration={15} />
+          <TestimonialsColumn testimonials={testimonials.slice(2, 4)} className="hidden md:block" duration={19} />
+          <TestimonialsColumn testimonials={testimonials.slice(4, 6)} className="hidden lg:block" duration={17} />
         </div>
       </div>
     </section>
-  )
+  );
 }
