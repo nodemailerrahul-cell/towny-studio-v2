@@ -1,253 +1,28 @@
-'use client'
+'use client';
 
-import { motion, useReducedMotion } from 'framer-motion'
-import { Footer } from '@/components/footer'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
-import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
+import { useReducedMotion } from 'framer-motion';
+import { Footer } from '@/components/footer';
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: 'Visit Us',
-    content: '123 Design Street, Creative City, IN 400001',
-  },
-  {
-    icon: Phone,
-    title: 'Call Us',
-    content: '+91 98765 43210',
-    link: 'tel:+919876543210',
-  },
-  {
-    icon: Mail,
-    title: 'Email Us',
-    content: 'hello@townystudio.com',
-    link: 'mailto:hello@townystudio.com',
-  },
-  {
-    icon: Clock,
-    title: 'Working Hours',
-    content: 'Mon - Sat: 9:00 AM - 6:00 PM',
-  },
-]
+import { ContactHero } from '@/components/contact/contact-hero';
+import { ContactInfo } from '@/components/contact/contact-info';
+import { ContactFormSection } from '@/components/contact/contact-form-section';
+import { ContactCta } from '@/components/contact/contact-cta';
 
 export default function ContactPage() {
-  const shouldReduceMotion = useReducedMotion()
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted')
-  }
+  const shouldReduceMotion = useReducedMotion() ?? false;
 
   return (
     <main className="min-h-screen bg-black text-white pt-16 lg:pt-20">
-      {/* Hero */}
-      <section className="py-20 lg:py-32">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h1 className="text-5xl lg:text-7xl font-serif font-bold mb-6 text-balance">
-              {"Let's Create Together"}
-            </h1>
-            <p className="text-xl text-white/70 leading-relaxed text-balance">
-              Ready to bring your vision to life? Get in touch with our team and let&apos;s start designing your dream space.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <ContactHero shouldReduceMotion={shouldReduceMotion} />
+      <ContactInfo shouldReduceMotion={shouldReduceMotion} />
 
-      {/* Contact Info Cards */}
+      {/* Contact Form + Map Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-b from-transparent to-white/5">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-            {contactInfo.map((info, index) => {
-              const Icon = info.icon
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : index * 0.1 }}
-                  className="bg-card border border-white/10 rounded-3xl p-8 text-center hover:border-primary/50 transition-colors"
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="font-bold mb-2">{info.title}</h3>
-                  {info.link ? (
-                    <a
-                      href={info.link}
-                      className="text-white/70 hover:text-primary transition-colors text-sm"
-                    >
-                      {info.content}
-                    </a>
-                  ) : (
-                    <p className="text-white/70 text-sm">{info.content}</p>
-                  )}
-                </motion.div>
-              )
-            })}
-          </div>
-
-          {/* Contact Form and Map */}
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-serif font-bold mb-8">
-                Send Us a Message
-              </h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <FieldGroup>
-                  <Field>
-                    <FieldLabel htmlFor="name">Name</FieldLabel>
-                    <Input
-                      id="name"
-                      type="text"
-                      placeholder="Your full name"
-                      required
-                      className="bg-card border-white/10 rounded-full"
-                    />
-                  </Field>
-                </FieldGroup>
-
-                <FieldGroup>
-                  <Field>
-                    <FieldLabel htmlFor="email">Email</FieldLabel>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="your.email@example.com"
-                      required
-                      className="bg-card border-white/10 rounded-full"
-                    />
-                  </Field>
-                </FieldGroup>
-
-                <FieldGroup>
-                  <Field>
-                    <FieldLabel htmlFor="phone">Phone</FieldLabel>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="+91 98765 43210"
-                      className="bg-card border-white/10 rounded-full"
-                    />
-                  </Field>
-                </FieldGroup>
-
-                <FieldGroup>
-                  <Field>
-                    <FieldLabel htmlFor="service">Service Interested In</FieldLabel>
-                    <select
-                      id="service"
-                      className="w-full h-10 px-4 bg-card border border-white/10 rounded-full text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                      required
-                    >
-                      <option value="">Select a service</option>
-                      <option value="interior">Interior Design</option>
-                      <option value="architecture">Architecture</option>
-                      <option value="both">Both</option>
-                      <option value="consultation">Consultation</option>
-                    </select>
-                  </Field>
-                </FieldGroup>
-
-                <FieldGroup>
-                  <Field>
-                    <FieldLabel htmlFor="message">Message</FieldLabel>
-                    <Textarea
-                      id="message"
-                      placeholder="Tell us about your project..."
-                      rows={5}
-                      required
-                      className="bg-card border-white/10 rounded-3xl resize-none"
-                    />
-                  </Field>
-                </FieldGroup>
-
-                <Button type="submit" size="lg" className="w-full rounded-full">
-                  Send Message
-                </Button>
-              </form>
-            </motion.div>
-
-            {/* Map/Image */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
-              className="relative"
-            >
-              <div className="sticky top-24">
-                <h2 className="text-3xl lg:text-4xl font-serif font-bold mb-8">
-                  Visit Our Studio
-                </h2>
-                <div className="aspect-[4/3] rounded-3xl overflow-hidden mb-6">
-                  <img
-                    src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
-                    alt="Our studio"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <p className="text-white/70 leading-relaxed mb-4">
-                  Our studio is located in the heart of the creative district, easily accessible and designed to inspire. Schedule a visit to discuss your project over coffee in our design-forward space.
-                </p>
-                <p className="text-white/70 leading-relaxed">
-                  <strong className="text-white">Parking:</strong> Free parking available on premises
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+        <ContactFormSection shouldReduceMotion={shouldReduceMotion} />
       </section>
 
-      {/* CTA */}
-      <section className="py-20 lg:py-32 bg-gradient-to-b from-transparent to-primary/10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-serif font-bold mb-4 text-balance">
-                Prefer to Talk?
-              </h2>
-              <p className="text-lg text-white/70 mb-6 text-balance">
-                Give us a call and speak directly with one of our design experts.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a
-                  href="tel:+919876543210"
-                  className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors"
-                >
-                  +91 98765 43210
-                </a>
-                <span className="hidden sm:inline text-white/30">|</span>
-                <p className="text-white/60">Mon - Sat: 9:00 AM - 6:00 PM</p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
+      <ContactCta shouldReduceMotion={shouldReduceMotion} />
       <Footer />
     </main>
-  )
+  );
 }
