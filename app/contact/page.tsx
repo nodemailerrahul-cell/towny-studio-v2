@@ -12,12 +12,12 @@ export default function ContactPage() {
   const shouldReduceMotion = useReducedMotion() ?? false;
 
   return (
-    <main className="min-h-screen bg-black text-white pt-16 lg:pt-20">
+    <main className="min-h-screen bg-black text-white">
       <ContactHero shouldReduceMotion={shouldReduceMotion} />
       <ContactInfo shouldReduceMotion={shouldReduceMotion} />
 
-      {/* Contact Form + Map Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-b from-transparent to-white/5">
+      {/* Contact Form + Studio Visit */}
+      <section className="py-20 lg:py-28 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
         <ContactFormSection shouldReduceMotion={shouldReduceMotion} />
       </section>
 
