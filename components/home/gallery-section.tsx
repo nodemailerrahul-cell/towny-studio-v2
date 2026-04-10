@@ -9,7 +9,7 @@ const galleryImages = [
   { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80", alt: "Contemporary kitchen" },
   { src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80", alt: "Luxury bedroom" },
   { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80", alt: "Minimalist bathroom" },
-  { src: "https://images.unsplash.com/photo-1600573472556-e636b90f7e09?w=800&q=80", alt: "Elegant dining room" },
+//   { src: "https://images.unsplash.com/photo-1600573472556-e636b90f7e09?w=800&q=80", alt: "Elegant dining room" },
   { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80", alt: "Modern office space" },
 ];
 

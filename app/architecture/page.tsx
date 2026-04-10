@@ -7,8 +7,10 @@ import { ArchitectureHero } from '@/components/architecture/architecture-hero';
 import { ServicesSection } from '@/components/architecture/services-section';
 import { ExpertiseSection } from '@/components/architecture/expertise-section';
 import { DesignPhilosophy } from '@/components/architecture/design-philosophy';
-import { ArchitecturePortfolio } from '@/components/architecture/architecture-portfolio';
+// import { ArchitecturePortfolio } from '@/components/architecture/architecture-portfolio';
+import { Packages } from '@/components/packages';
 import { ArchitectureCta } from '@/components/architecture/architecture-cta';
+
 
 export default function ArchitecturePage() {
   const shouldReduceMotion = useReducedMotion() ?? false;
@@ -19,7 +21,9 @@ export default function ArchitecturePage() {
       <ServicesSection shouldReduceMotion={shouldReduceMotion} />
       <ExpertiseSection shouldReduceMotion={shouldReduceMotion} />
       <DesignPhilosophy shouldReduceMotion={shouldReduceMotion} />
-      <ArchitecturePortfolio shouldReduceMotion={shouldReduceMotion} />
+      {/* <ArchitecturePortfolio shouldReduceMotion={shouldReduceMotion} /> */}
+      <Packages /> 
+
       <ArchitectureCta shouldReduceMotion={shouldReduceMotion} />
       <Footer />
     </main>

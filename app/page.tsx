@@ -1,6 +1,6 @@
 import { HeroCarousel } from '@/components/hero-carousel';
 import { Marquee } from '@/components/marquee';
-import { Packages } from '@/components/packages';
+// import { Packages } from '@/components/packages';
 import { Testimonials } from '@/components/testimonials';
 import { FAQ } from '@/components/faq';
 import { Footer } from '@/components/footer';
@@ -40,7 +40,7 @@ export default function HomePage() {
       <GallerySection />
 
       {/* Packages */}
-      <Packages />
+      {/* <Packages /> */}
 
       {/* Testimonials */}
       <Testimonials />
