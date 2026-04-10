@@ -110,7 +110,6 @@ export function InteriorPortfolio({ shouldReduceMotion }: InteriorPortfolioProps
     );
   };
 
-  // Mobile detection (matches Tailwind lg breakpoint)
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -125,7 +124,6 @@ export function InteriorPortfolio({ shouldReduceMotion }: InteriorPortfolioProps
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  // Scroll to active item when it changes (mobile only)
   useEffect(() => {
     if (!isMobile || !containerRef.current) return;
 
@@ -134,11 +132,10 @@ export function InteriorPortfolio({ shouldReduceMotion }: InteriorPortfolioProps
 
     container.scrollTo({
       left: targetScroll,
-      behavior: shouldReduceMotion ? 'instant' : 'smooth',
+      behavior: shouldReduceMotion ? 'auto' : 'smooth',
     });
   }, [activeIndex, isMobile, shouldReduceMotion]);
 
-  // Sync activeIndex when user swipes/scrolls manually (mobile only)
   useEffect(() => {
     if (!isMobile || !containerRef.current) return;
 
@@ -159,14 +156,12 @@ export function InteriorPortfolio({ shouldReduceMotion }: InteriorPortfolioProps
     return () => container.removeEventListener('scroll', handleScroll);
   }, [isMobile, activeIndex]);
 
-  // Reset scroll position when switching layouts (desktop ↔ mobile)
   useEffect(() => {
     if (!isMobile && containerRef.current) {
       containerRef.current.scrollLeft = 0;
     }
   }, [isMobile]);
 
-  // Keyboard navigation (unchanged)
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') goPrev();
@@ -204,7 +199,7 @@ export function InteriorPortfolio({ shouldReduceMotion }: InteriorPortfolioProps
           <div className="mb-4 flex items-center justify-between gap-3">
             <p className="text-sm text-white/45">
               {isMobile
-                ? 'Swipe or use the arrows, or press ← →'
+                ? 'Swipe or tap a card to explore'
                 : 'Click any panel, use the arrows, or press ← →'}
             </p>
 
@@ -214,7 +209,8 @@ export function InteriorPortfolio({ shouldReduceMotion }: InteriorPortfolioProps
             </p>
           </div>
 
-          <div className="absolute left-2 top-1/2 z-30 -translate-y-1/2">
+          {/* Desktop arrows only */}
+          <div className="absolute left-2 top-1/2 z-30 hidden -translate-y-1/2 lg:block">
             <button
               type="button"
               onClick={goPrev}
@@ -225,7 +221,7 @@ export function InteriorPortfolio({ shouldReduceMotion }: InteriorPortfolioProps
             </button>
           </div>
 
-          <div className="absolute right-2 top-1/2 z-30 -translate-y-1/2">
+          <div className="absolute right-2 top-1/2 z-30 hidden -translate-y-1/2 lg:block">
             <button
               type="button"
               onClick={goNext}
@@ -244,7 +240,7 @@ export function InteriorPortfolio({ shouldReduceMotion }: InteriorPortfolioProps
             transition={{ duration: shouldReduceMotion ? 0 : 0.65 }}
             className={`flex h-[clamp(380px,62vh,560px)] ${
               isMobile
-                ? 'overflow-x-auto snap-x snap-mandatory gap-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+                ? 'overflow-x-auto snap-x snap-mandatory gap-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden touch-pan-x'
                 : 'overflow-hidden gap-3'
             }`}
             role="region"
@@ -343,14 +339,14 @@ export function InteriorPortfolio({ shouldReduceMotion }: InteriorPortfolioProps
                         </p>
 
                         <div className="mt-5 inline-flex items-center gap-2 border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/90 backdrop-blur-sm">
-                          Click another panel or use the arrow controls
+                          Tap another panel or swipe
                         </div>
                       </div>
                     ) : (
                       <div className="flex items-end justify-between gap-3">
                         <div className="max-w-[8rem] sm:max-w-[10rem]">
                           <p className="text-[10px] uppercase tracking-[0.28em] text-white/50">
-                            Click
+                            Tap
                           </p>
                           <h3 className="mt-1 text-sm font-medium leading-tight text-white/95 sm:text-base">
                             {item.title}
@@ -367,6 +363,26 @@ export function InteriorPortfolio({ shouldReduceMotion }: InteriorPortfolioProps
               );
             })}
           </motion.div>
+
+          {/* Mobile pagination dots */}
+          <div className="mt-5 flex items-center justify-center gap-2 lg:hidden">
+            {portfolioImages.map((item, index) => {
+              const isActive = index === activeIndex;
+
+              return (
+                <button
+                  key={item.src}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  aria-label={`Go to ${item.title}`}
+                  aria-pressed={isActive}
+                  className={`h-2.5 rounded-full transition-all ${
+                    isActive ? 'w-8 bg-white' : 'w-2.5 bg-white/35'
+                  }`}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
