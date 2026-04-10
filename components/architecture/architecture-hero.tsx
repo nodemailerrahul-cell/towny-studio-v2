@@ -28,10 +28,10 @@ export function ArchitectureHero({ shouldReduceMotion }: ArchitectureHeroProps) 
           className="max-w-4xl mx-auto text-center"
         >
           <h1 className="text-5xl lg:text-7xl font-serif font-bold mb-6 text-balance">
-            Architectural Innovation
+            Architectural Excellence
           </h1>
           <p className="text-xl text-white/70 mb-8 leading-relaxed text-balance">
-            Designing structures that inspire, innovate, and stand the test of time through thoughtful architectural solutions.
+            At Towny Studio, architecture and interiors are conceived as a unified process — from concept and planning to detailed design, technical coordination, and execution. We design climate-responsive, efficient environments built to perform over time.
           </p>
           <Button asChild size="lg" className="rounded-full text-lg px-8">
             <Link href="/contact">Discuss Your Project</Link>

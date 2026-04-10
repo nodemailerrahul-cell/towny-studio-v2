@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 import { Building2, Home, Store, Hotel, TreePine, Ruler } from 'lucide-react';
 
 const services = [
-  { icon: Home, title: 'Residential Architecture', description: 'Custom homes designed to reflect your lifestyle and enhance your living experience.' },
-  { icon: Building2, title: 'Commercial Buildings', description: 'Functional and aesthetic commercial spaces that drive business success.' },
-  { icon: Store, title: 'Retail Spaces', description: 'Dynamic retail environments that enhance customer experience and brand identity.' },
-  { icon: Hotel, title: 'Hospitality', description: 'Hotels and restaurants designed to create memorable guest experiences.' },
-  { icon: TreePine, title: 'Landscape Architecture', description: 'Outdoor spaces that harmonize with built environments and nature.' },
-  { icon: Ruler, title: 'Renovation & Restoration', description: 'Breathing new life into existing structures while preserving their character.' },
+  { icon: Home, title: 'Residential Villas', description: 'Custom-designed villas that balance minimalism with functionality, reflecting the lifestyle and identity of each homeowner.' },
+  { icon: Building2, title: 'Luxury Apartments', description: 'Refined apartment interiors and architecture with clean lines, thoughtful material selection, and purposeful simplicity.' },
+  { icon: Store, title: 'Commercial Offices', description: 'Workspaces designed to be efficient, climate-responsive, and built to perform — tailored to your brand and business needs.' },
+  { icon: Hotel, title: 'Hospitality Environments', description: 'Hotels, restaurants, and hospitality spaces that deliver memorable experiences through cohesive design.' },
+  { icon: TreePine, title: 'Retail Spaces', description: 'Dynamic retail environments that balance refined aesthetics with functional design and brand identity.' },
+  { icon: Ruler, title: 'Renovation & Restoration', description: 'Breathing new life into existing structures while maintaining design integrity and attention to detail.' },
 ];
 
 type ServicesSectionProps = {
@@ -31,7 +31,7 @@ export function ServicesSection({ shouldReduceMotion }: ServicesSectionProps) {
             Architectural Services
           </h2>
           <p className="text-lg text-white/60 max-w-2xl mx-auto text-balance">
-            Comprehensive architectural solutions for diverse project types
+            We specialize in residential villas, luxury apartments, commercial offices, retail spaces, and hospitality environments
           </p>
         </motion.div>
 

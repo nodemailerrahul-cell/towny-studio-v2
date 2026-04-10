@@ -21,13 +21,13 @@ export function DesignPhilosophy({ shouldReduceMotion }: DesignPhilosophyProps) 
               Our Design Philosophy
             </h2>
             <p className="text-lg text-white/70 mb-6 leading-relaxed">
-              We believe architecture should do more than shelter—it should inspire. Every project begins with understanding the unique context: the site, the climate, the culture, and most importantly, the people who will inhabit the space.
+              Our approach goes beyond aesthetics. We believe that every space should reflect the lifestyle, aspirations, and identity of its users while responding intelligently to its context. With a deep understanding of Bengaluru&apos;s unique climate, urban fabric, and construction challenges, we design environments that are climate-responsive, efficient, and built to perform over time.
             </p>
             <p className="text-lg text-white/70 mb-6 leading-relaxed">
-              Our designs balance timeless aesthetics with modern functionality, creating buildings that are both beautiful and sustainable. We embrace innovation while respecting tradition, always striving for harmony between built form and natural environment.
+              At Towny Studio, architecture and interiors are not treated as separate disciplines — they are conceived as a unified process. From concept and planning to detailed design, technical coordination, and execution, our team ensures a seamless journey with precision and attention to detail at every stage.
             </p>
             <p className="text-lg text-white/70 leading-relaxed">
-              Through meticulous attention to detail and collaborative design process, we create architecture that stands as a testament to thoughtful, purposeful design.
+              Our design language focuses on clean lines, thoughtful material selection, and spaces that feel open, intuitive, and enduring. Every project we undertake is guided by a commitment to quality, detail, and client satisfaction.
             </p>
           </motion.div>
 

@@ -20,7 +20,7 @@ export function ContactHero({ shouldReduceMotion }: ContactHeroProps) {
             Let&apos;s Create Together
           </h1>
           <p className="text-xl text-white/70 leading-relaxed text-balance">
-            Ready to bring your vision to life? Get in touch with our team and let&apos;s start designing your dream space.
+            Whether designing a private residence or a large-scale commercial space, Towny Studio brings clarity, creativity, and control to the entire process. Let&apos;s start crafting your space.
           </p>
         </motion.div>
       </div>

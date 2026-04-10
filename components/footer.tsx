@@ -13,7 +13,7 @@ export function Footer() {
               <span className="text-primary"> Studio</span>
             </h3>
             <p className="text-white/60 mb-6 leading-relaxed">
-              Creating timeless spaces that blend aesthetics with functionality. Your vision, our expertise.
+              A multidisciplinary design practice integrating architecture and interior design. Rooted in minimalism, we deliver elegant, functional, and timeless spaces.
             </p>
             <div className="flex gap-3">
               <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-primary/20 hover:text-primary flex items-center justify-center transition-colors" aria-label="Facebook">
@@ -67,11 +67,11 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-4">Services</h4>
             <ul className="space-y-3">
-              <li className="text-white/60">Residential Design</li>
-              <li className="text-white/60">Commercial Spaces</li>
-              <li className="text-white/60">Space Planning</li>
-              <li className="text-white/60">3D Visualization</li>
-              <li className="text-white/60">Project Management</li>
+              <li className="text-white/60">Residential Villas</li>
+              <li className="text-white/60">Luxury Apartments</li>
+              <li className="text-white/60">Commercial Offices</li>
+              <li className="text-white/60">Retail Spaces</li>
+              <li className="text-white/60">Hospitality Environments</li>
             </ul>
           </div>
 

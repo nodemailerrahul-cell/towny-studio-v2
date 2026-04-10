@@ -11,12 +11,13 @@ import { GallerySection } from '@/components/home/gallery-section';
 import { CtaSection } from '@/components/home/cta-section';
 
 const marqueeItems = [
-  'Interior Design',
   'Architecture',
-  'Space Planning',
-  'Project Management',
-  '3D Visualization',
-  'Luxury Homes',
+  'Interior Design',
+  'Residential Villas',
+  'Luxury Apartments',
+  'Commercial Offices',
+  'Retail Spaces',
+  'Hospitality',
 ];
 
 

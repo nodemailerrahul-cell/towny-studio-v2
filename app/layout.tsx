@@ -25,8 +25,8 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title: 'Towny Studio - Premium Interior Design & Architecture',
-  description: 'Transform your spaces into timeless masterpieces with Towny Studio. Expert interior design and architecture services.',
+  title: 'Towny Studio - Architecture & Interior Design | Bengaluru',
+  description: 'Towny Studio is a multidisciplinary design practice integrating architecture and interior design. Rooted in minimalism, we deliver elegant, functional, and timeless spaces in Bengaluru.',
   generator: 'v0.app',
   icons: {
     icon: [

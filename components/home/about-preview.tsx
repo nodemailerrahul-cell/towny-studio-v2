@@ -9,13 +9,13 @@ export function AboutPreview() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-4xl lg:text-5xl font-serif font-bold mb-6 text-balance">
-              Crafting Spaces That Tell Your Story
+              Where Architecture Meets Interior Design
             </h2>
             <p className="text-lg text-white/70 mb-6 leading-relaxed">
-              At Towny Studio, we believe that every space has a story to tell. Our team of expert designers and architects work closely with you to transform your vision into reality, creating environments that are both beautiful and functional.
+              Towny Studio is a multidisciplinary design practice that seamlessly integrates architecture and interior design to deliver complete, cohesive building solutions. Rooted in a minimalistic design philosophy, our work emphasizes clarity, balance, and purposeful simplicity.
             </p>
             <p className="text-lg text-white/70 mb-8 leading-relaxed">
-              With over 15 years of experience and 500+ successful projects, we bring creativity, precision, and passion to every design challenge.
+              Every space we create reflects the lifestyle, aspirations, and identity of its users — designed with a deep understanding of Bengaluru&apos;s unique climate, urban fabric, and construction challenges.
             </p>
             <Button asChild size="lg" className="rounded-full">
               <Link href="/about">

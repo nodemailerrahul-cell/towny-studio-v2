@@ -34,8 +34,9 @@ export function InteriorHero({ shouldReduceMotion }: InteriorHeroProps) {
 
       {/* Description */}
       <AnimatedContainer className="mt-6 max-w-2xl text-white/70 text-lg leading-relaxed">
-        Transform your space into a reflection of your personality and lifestyle
-        with refined, modern, and timeless interior design solutions.
+        Rooted in minimalistic design philosophy, our interiors emphasize clarity,
+        balance, and purposeful simplicity &mdash; creating spaces that are elegant,
+        functional, and timeless.
       </AnimatedContainer>
 
       {/* Buttons */}

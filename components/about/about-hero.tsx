@@ -20,7 +20,7 @@ export function AboutHero({ shouldReduceMotion }: AboutHeroProps) {
             Where Design Meets Purpose
           </h1>
           <p className="text-xl text-white/70 leading-relaxed text-balance">
-            For over 15 years, Towny Studio has been at the forefront of innovative interior design and architecture, creating spaces that inspire, function beautifully, and stand the test of time.
+            Towny Studio is a multidisciplinary design practice that seamlessly integrates architecture and interior design to deliver complete, cohesive building solutions — rooted in minimalism, clarity, and purposeful simplicity.
           </p>
         </motion.div>
       </div>

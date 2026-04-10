@@ -10,27 +10,27 @@ import Link from 'next/link'
 
 const slides = [
   {
-    title: 'Timeless Design',
-    subtitle: 'Crafting Spaces That Inspire',
-    description: 'Experience the perfect blend of aesthetics and functionality',
+    title: 'Minimalist by Design',
+    subtitle: 'Architecture & Interior Design Studio',
+    description: 'Clarity, balance, and purposeful simplicity — creating spaces that are elegant, functional, and timeless.',
     image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&q=80',
     cta: 'Explore Projects',
     ctaLink: '/interior',
   },
   {
-    title: 'Architectural Excellence',
-    subtitle: 'Building Dreams Into Reality',
-    description: 'Innovative architectural solutions for modern living',
+    title: 'Architecture That Endures',
+    subtitle: 'Climate-Responsive Design for Bengaluru',
+    description: 'Designing environments that respond intelligently to context — efficient, climate-responsive, and built to perform over time.',
     image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80',
     cta: 'View Architecture',
     ctaLink: '/architecture',
   },
   {
-    title: 'Premium Interiors',
-    subtitle: 'Luxury Meets Comfort',
-    description: 'Transform your space into a sanctuary of elegance',
+    title: 'Thoughtfully Crafted',
+    subtitle: 'From Concept to Execution',
+    description: 'Architecture and interiors conceived as a unified process — delivering spaces not just built, but crafted to stand the test of time.',
     image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80',
-    cta: 'Get Started',
+    cta: 'Start Your Project',
     ctaLink: '/contact',
   },
 ]

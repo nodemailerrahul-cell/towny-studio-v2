@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 import { Award, Heart, Target, Users, Lightbulb, Zap } from 'lucide-react';
 
 const values = [
-  { icon: Heart, title: 'Passion', description: 'We pour our hearts into every project, treating each space as if it were our own.' },
-  { icon: Target, title: 'Precision', description: 'Meticulous attention to detail ensures every element is perfectly executed.' },
-  { icon: Lightbulb, title: 'Innovation', description: 'We embrace cutting-edge design trends while respecting timeless aesthetics.' },
-  { icon: Users, title: 'Collaboration', description: 'Your vision guides our creativity in a true partnership approach.' },
-  { icon: Award, title: 'Excellence', description: 'We set the highest standards and consistently exceed expectations.' },
-  { icon: Zap, title: 'Efficiency', description: 'Streamlined processes ensure timely delivery without compromising quality.' },
+  { icon: Heart, title: 'Minimalism', description: 'Our design language focuses on clean lines, thoughtful material selection, and spaces that feel open, intuitive, and enduring.' },
+  { icon: Target, title: 'Precision', description: 'From concept and planning to detailed design, technical coordination, and execution — precision and attention to detail at every stage.' },
+  { icon: Lightbulb, title: 'Climate-Responsive', description: 'With a deep understanding of Bengaluru\'s climate and urban fabric, we design environments that are efficient and built to perform over time.' },
+  { icon: Users, title: 'Client-Centric', description: 'Every space should reflect the lifestyle, aspirations, and identity of its users while responding intelligently to its context.' },
+  { icon: Award, title: 'Quality', description: 'Every project is guided by a commitment to quality, detail, and client satisfaction — delivering spaces thoughtfully crafted to stand the test of time.' },
+  { icon: Zap, title: 'Unified Process', description: 'Architecture and interiors are conceived as a unified process — ensuring a seamless journey from concept to completion.' },
 ];
 
 type CoreValuesProps = {
@@ -31,7 +31,7 @@ export function CoreValues({ shouldReduceMotion }: CoreValuesProps) {
             Our Core Values
           </h2>
           <p className="text-lg text-white/60 max-w-2xl mx-auto text-balance">
-            The principles that guide everything we do
+            The principles that guide everything we do at Towny Studio
           </p>
         </motion.div>
 

@@ -21,13 +21,13 @@ export function OurStory({ shouldReduceMotion }: OurStoryProps) {
               Our Story
             </h2>
             <p className="text-lg text-white/70 mb-6 leading-relaxed">
-              Founded in 2009 by a group of passionate architects and designers, Towny Studio began with a simple vision: to create spaces that enhance the way people live and work.
+              Towny Studio is a multidisciplinary design practice that seamlessly integrates architecture and interior design to deliver complete, cohesive building solutions. Rooted in a minimalistic design philosophy, our work emphasizes clarity, balance, and purposeful simplicity — creating spaces that are elegant, functional, and timeless.
             </p>
             <p className="text-lg text-white/70 mb-6 leading-relaxed">
-              What started as a small studio has grown into a full-service design firm, but our core values remain unchanged. We believe in the power of thoughtful design to transform lives, inspire creativity, and create lasting value.
+              Our approach goes beyond aesthetics. We believe that every space should reflect the lifestyle, aspirations, and identity of its users while responding intelligently to its context. With a deep understanding of Bengaluru&apos;s unique climate, urban fabric, and construction challenges, we design environments that are climate-responsive, efficient, and built to perform over time.
             </p>
             <p className="text-lg text-white/70 leading-relaxed">
-              Today, with over 500 completed projects and 25+ industry awards, we continue to push the boundaries of what design can achieve.
+              At Towny Studio, architecture and interiors are not treated as separate disciplines — they are conceived as a unified process. From concept and planning to detailed design, technical coordination, and execution, our team ensures a seamless journey with precision and attention to detail at every stage.
             </p>
           </motion.div>
 
@@ -40,7 +40,7 @@ export function OurStory({ shouldReduceMotion }: OurStoryProps) {
           >
             <img
               src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
-              alt="Studio workspace"
+              alt="Towny Studio workspace"
               className="object-cover w-full h-full"
             />
           </motion.div>
