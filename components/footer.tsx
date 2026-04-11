@@ -89,20 +89,27 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <span className="text-white/60 text-sm">
-                  123 Design Street, Creative City, IN 400001
+                <span className="text-white/60 text-sm leading-relaxed">
+                  18/1, Wellington Street Shanthinagar,<br />
+                  Langford Gardens, Bengaluru,<br />
+                  Karnataka 560025
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-primary shrink-0" />
-                <a href="tel:+919876543210" className="text-white/60 text-sm hover:text-primary transition-colors">
-                  +91 98765 43210
-                </a>
+              <li className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1">
+                  <a href="tel:+919741523637" className="text-white/60 text-sm hover:text-primary transition-colors">
+                    +91 97415 23637
+                  </a>
+                  <a href="tel:+919741252425" className="text-white/60 text-sm hover:text-primary transition-colors">
+                    +91 97412 52425
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <a href="mailto:hello@townystudio.com" className="text-white/60 text-sm hover:text-primary transition-colors">
-                  hello@townystudio.com
+                <a href="mailto:Connect@townystudio.com" className="text-white/60 text-sm hover:text-primary transition-colors">
+                  Connect@townystudio.com
                 </a>
               </li>
             </ul>
