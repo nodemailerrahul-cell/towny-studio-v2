@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 import { Check, Crown, Home, Sparkles, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -586,18 +586,35 @@ const packages: PackageData[] = [
 ]
 
 export function Packages() {
-  const shouldReduceMotion = useReducedMotion()
-  const [activeIndex, setActiveIndex] = useState(1)
+  const shouldReduceMotion = useReducedMotion();
+  const [activeIndex, setActiveIndex] = useState(1);
+  const detailsRef = useRef<HTMLDivElement | null>(null);
 
-  const activePackage = useMemo(() => packages[activeIndex], [activeIndex])
+  const activePackage = useMemo(() => packages[activeIndex], [activeIndex]);
+
+  const handleSelectPackage = (index: number) => {
+    setActiveIndex(index);
+
+    if (typeof window !== 'undefined') {
+      window.requestAnimationFrame(() => {
+        detailsRef.current?.scrollIntoView({
+          behavior: shouldReduceMotion ? 'auto' : 'smooth',
+          block: 'start',
+        });
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (!detailsRef.current) return;
+  }, [activeIndex]);
 
   return (
     <section className="py-20 lg:py-32 bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
           className="text-center mb-4"
         >
@@ -612,41 +629,52 @@ export function Packages() {
         {/* Package Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {packages.map((pkg, index) => {
-            const Icon = pkg.icon
-            const isActive = index === activeIndex
+            const Icon = pkg.icon;
+            const isActive = index === activeIndex;
+
             return (
-              <motion.div
+              <motion.button
                 key={pkg.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                type="button"
+                onClick={() => handleSelectPackage(index)}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: shouldReduceMotion ? 0 : 0.6,
-                  delay: shouldReduceMotion ? 0 : index * 0.1,
+                  duration: shouldReduceMotion ? 0 : 0.45,
+                  delay: shouldReduceMotion ? 0 : index * 0.08,
                 }}
-                onClick={() => setActiveIndex(index)}
-                className={`relative cursor-pointer bg-card border rounded-3xl p-8 transition-all ${
-                  isActive
-                    ? 'border-primary shadow-lg shadow-primary/20 scale-[1.03]'
-                    : 'border-white/10 hover:border-primary/50'
-                }`}
+                whileTap={{ scale: 0.98 }}
+                className={`relative w-full cursor-pointer bg-card border rounded-3xl p-8 text-left transition-all duration-300
+                  touch-manipulation
+                  ${isActive
+                    ? 'border-primary shadow-lg shadow-primary/20 md:scale-[1.03]'
+                    : 'border-white/10 md:hover:border-primary/50 md:hover:-translate-y-1'
+                  }`}
+                style={{
+                  WebkitTapHighlightColor: 'transparent',
+                }}
               >
                 {pkg.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-black px-4 py-1 rounded-full text-sm font-semibold">
                     Popular
                   </div>
                 )}
+
                 <div className="flex flex-col items-center text-center mb-6">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
+
                   <h3 className="text-xl font-bold mb-2">{pkg.name}</h3>
+
                   <p className="text-3xl font-bold text-primary mb-2">
                     {pkg.price}{' '}
                     <span className="text-base text-white/60">/ sqft</span>
                   </p>
+
                   <p className="text-sm text-white/60">{pkg.description}</p>
                 </div>
+
                 <ul className="space-y-3 mb-8">
                   {pkg.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2">
@@ -655,57 +683,63 @@ export function Packages() {
                     </li>
                   ))}
                 </ul>
+
                 <Button
-                  className="w-full rounded-full"
+                  className="w-full rounded-full pointer-events-none"
                   variant={isActive ? 'default' : 'outline'}
                 >
                   {isActive ? 'Selected' : 'View Details'}
                 </Button>
-              </motion.div>
-            )
+              </motion.button>
+            );
           })}
         </div>
 
         {/* Active Package Full Details */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activePackage.name}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.4 }}
-            className="bg-card border border-primary/30 rounded-3xl p-8 lg:p-12"
-          >
-            <h3 className="text-3xl font-serif font-bold text-primary mb-2 text-center">
-              {activePackage.name} Details
-            </h3>
-            <p className="text-center text-white/60 mb-8">
-              {activePackage.price} per sqft — {activePackage.description}
-            </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {activePackage.sections.map((section, index) => (
-                <div key={index}>
-                  <h4 className="text-lg font-bold mb-4 flex items-center gap-2">
-                    <Crown className="w-5 h-5 text-primary" />
-                    {section.title}
-                  </h4>
-                  <ul className="space-y-2">
-                    {section.items.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-2 text-sm text-white/70"
-                      >
-                        <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+        <div ref={detailsRef} className="scroll-mt-24">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activePackage.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.35 }}
+              className="bg-card border border-primary/30 rounded-3xl p-8 lg:p-12"
+            >
+              <h3 className="text-3xl font-serif font-bold text-primary mb-2 text-center">
+                {activePackage.name} Details
+              </h3>
+
+              <p className="text-center text-white/60 mb-8">
+                {activePackage.price} per sqft — {activePackage.description}
+              </p>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {activePackage.sections.map((section, index) => (
+                  <div key={index}>
+                    <h4 className="text-lg font-bold mb-4 flex items-center gap-2">
+                      <Crown className="w-5 h-5 text-primary" />
+                      {section.title}
+                    </h4>
+
+                    <ul className="space-y-2">
+                      {section.items.map((item, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-2 text-sm text-white/70"
+                        >
+                          <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
-  )
+  );
 }

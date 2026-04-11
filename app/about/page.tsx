@@ -15,7 +15,7 @@ export default function AboutPage() {
       <AboutHero shouldReduceMotion={shouldReduceMotion} />
       <OurStory shouldReduceMotion={shouldReduceMotion} />
       <CoreValues shouldReduceMotion={shouldReduceMotion} />
-      <TeamSection shouldReduceMotion={shouldReduceMotion} />
+      {/* <TeamSection shouldReduceMotion={shouldReduceMotion} /> */}
     </main>
   );
 }
