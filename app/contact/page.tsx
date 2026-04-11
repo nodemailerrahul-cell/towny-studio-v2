@@ -1,7 +1,6 @@
 'use client';
 
 import { useReducedMotion } from 'framer-motion';
-import { Footer } from '@/components/footer';
 
 import { ContactHero } from '@/components/contact/contact-hero';
 import { ContactInfo } from '@/components/contact/contact-info';
@@ -22,7 +21,6 @@ export default function ContactPage() {
       </section>
 
       <ContactCta shouldReduceMotion={shouldReduceMotion} />
-      <Footer />
     </main>
   );
 }

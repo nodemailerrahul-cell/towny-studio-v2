@@ -1,7 +1,6 @@
 'use client';
 
 import { useReducedMotion } from 'framer-motion';
-import { Footer } from '@/components/footer';
 
 import { InteriorHero } from '@/components/interior/interior-hero';
 import { InteriorServices } from '@/components/interior/interior-services';
@@ -19,7 +18,6 @@ export default function InteriorPage() {
       <InteriorProcess shouldReduceMotion={shouldReduceMotion} />
       <InteriorPortfolio shouldReduceMotion={shouldReduceMotion} />
       <InteriorCta shouldReduceMotion={shouldReduceMotion} />
-      <Footer />
     </main>
   );
 }

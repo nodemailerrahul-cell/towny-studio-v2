@@ -1,7 +1,6 @@
 'use client';
 
 import { useReducedMotion } from 'framer-motion';
-import { Footer } from '@/components/footer';
 
 import { AboutHero } from '@/components/about/about-hero';
 import { OurStory } from '@/components/about/our-story';
@@ -17,7 +16,6 @@ export default function AboutPage() {
       <OurStory shouldReduceMotion={shouldReduceMotion} />
       <CoreValues shouldReduceMotion={shouldReduceMotion} />
       <TeamSection shouldReduceMotion={shouldReduceMotion} />
-      <Footer />
     </main>
   );
 }

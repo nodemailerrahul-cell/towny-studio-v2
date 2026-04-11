@@ -1,7 +1,6 @@
 'use client';
 
 import { useReducedMotion } from 'framer-motion';
-import { Footer } from '@/components/footer';
 
 import { ArchitectureHero } from '@/components/architecture/architecture-hero';
 import { ServicesSection } from '@/components/architecture/services-section';
@@ -25,7 +24,6 @@ export default function ArchitecturePage() {
       <Packages /> 
 
       <ArchitectureCta shouldReduceMotion={shouldReduceMotion} />
-      <Footer />
     </main>
   );
 }

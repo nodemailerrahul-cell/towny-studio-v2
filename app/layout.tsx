@@ -3,6 +3,8 @@ import { Inter, IBM_Plex_Serif, Merriweather } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { Navigation } from '@/components/navigation'
+import { Footer } from '@/components/footer'
+import { BsWhatsapp } from 'react-icons/bs'
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -57,6 +59,22 @@ export default function RootLayout({
       <body className={`${inter.variable} ${ibmPlexSerif.variable} ${merriweather.variable} font-sans antialiased bg-black text-white`}>
         <Navigation />
         {children}
+        <Footer />
+
+        {/* Floating WhatsApp Button */}
+        <a
+          href="https://wa.me/919876543210"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+          className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:bg-[#1ebe5d] hover:scale-110 transition-all duration-300"
+          style={{ boxShadow: '0 0 0 0 rgba(37,211,102,0.5)' }}
+        >
+          {/* Pulse ring */}
+          <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-60 animate-ping" />
+          <BsWhatsapp size={28} />
+        </a>
+
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

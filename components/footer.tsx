@@ -8,11 +8,18 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-serif font-bold mb-4">
-              <span className="text-white">Towny</span>
-              <span className="text-primary"> Studio</span>
-            </h3>
-            <p className="text-white/60 mb-6 leading-relaxed">
+            {/* Logo */}
+            <Link href="/" aria-label="Towny Studio – Home" className="inline-block mb-5 group">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo_white.jpeg"
+                alt="Towny Studio – Architect | Interior | Life Style"
+                width={160}
+                height={64}
+                className="h-16 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+              />
+            </Link>
+            <p className="text-white/60 mb-6 leading-relaxed text-sm">
               A multidisciplinary design practice integrating architecture and interior design. Rooted in minimalism, we deliver elegant, functional, and timeless spaces.
             </p>
             <div className="flex gap-3">
@@ -30,6 +37,7 @@ export function Footer() {
               </a>
             </div>
           </div>
+
 
           {/* Quick Links */}
           <div>

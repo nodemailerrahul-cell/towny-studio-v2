@@ -3,7 +3,6 @@ import { Marquee } from '@/components/marquee';
 // import { Packages } from '@/components/packages';
 import { Testimonials } from '@/components/testimonials';
 import { FAQ } from '@/components/faq';
-import { Footer } from '@/components/footer';
 
 import { Stats } from '@/components/home/stats';
 import { AboutPreview } from '@/components/home/about-preview';
@@ -52,8 +51,6 @@ export default function HomePage() {
       {/* CTA */}
       <CtaSection />
 
-      {/* Footer */}
-      <Footer />
     </main>
   );
 }
