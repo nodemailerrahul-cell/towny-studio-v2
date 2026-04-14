@@ -1,12 +1,32 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const team = [
-  { name: 'Arjun Malhotra', role: 'Principal Architect', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80' },
-  { name: 'Priya Sharma', role: 'Lead Interior Designer', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80' },
-  { name: 'Vikram Singh', role: 'Senior Designer', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80' },
-  { name: 'Neha Gupta', role: 'Project Manager', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80' },
+  {
+    name: "Arjun Malhotra",
+    role: "Principal Architect",
+    image:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80",
+  },
+  {
+    name: "Priya Sharma",
+    role: "Lead Interior Designer",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
+  },
+  {
+    name: "Vikram Singh",
+    role: "Senior Designer",
+    image:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80",
+  },
+  {
+    name: "Neha Gupta",
+    role: "Project Manager",
+    image:
+      "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
+  },
 ];
 
 type TeamSectionProps = {
@@ -27,7 +47,7 @@ export function TeamSection({ shouldReduceMotion }: TeamSectionProps) {
           <h2 className="text-4xl lg:text-5xl font-serif font-bold mb-4 text-balance">
             Meet Our Team
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto text-balance">
+          <p className="text-xl text-white/60 max-w-2xl mx-auto text-balance">
             Talented professionals dedicated to bringing your vision to life
           </p>
         </motion.div>
@@ -39,7 +59,10 @@ export function TeamSection({ shouldReduceMotion }: TeamSectionProps) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : index * 0.1 }}
+              transition={{
+                duration: shouldReduceMotion ? 0 : 0.6,
+                delay: shouldReduceMotion ? 0 : index * 0.1,
+              }}
               className="text-center"
             >
               <div className="relative aspect-square rounded-3xl overflow-hidden mb-4">

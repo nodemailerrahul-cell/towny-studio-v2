@@ -1,32 +1,37 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const process = [
   {
-    number: '01',
-    title: 'Consultation',
-    description: 'We start by understanding your vision, lifestyle, and requirements through an in-depth consultation.',
+    number: "01",
+    title: "Consultation",
+    description:
+      "We start by understanding your vision, lifestyle, and requirements through an in-depth consultation.",
   },
   {
-    number: '02',
-    title: 'Concept Design',
-    description: 'Our team creates initial concepts with mood boards, sketches, and 3D visualizations.',
+    number: "02",
+    title: "Concept Design",
+    description:
+      "Our team creates initial concepts with mood boards, sketches, and 3D visualizations.",
   },
   {
-    number: '03',
-    title: 'Design Development',
-    description: 'We refine the chosen concept, select materials, and create detailed plans.',
+    number: "03",
+    title: "Design Development",
+    description:
+      "We refine the chosen concept, select materials, and create detailed plans.",
   },
   {
-    number: '04',
-    title: 'Execution',
-    description: 'Our expert team brings the design to life with precision and attention to detail.',
+    number: "04",
+    title: "Execution",
+    description:
+      "Our expert team brings the design to life with precision and attention to detail.",
   },
   {
-    number: '05',
-    title: 'Final Reveal',
-    description: 'We walk you through your transformed space, ensuring every detail exceeds expectations.',
+    number: "05",
+    title: "Final Reveal",
+    description:
+      "We walk you through your transformed space, ensuring every detail exceeds expectations.",
   },
 ];
 
@@ -48,7 +53,7 @@ export function InteriorProcess({ shouldReduceMotion }: InteriorProcessProps) {
           <h2 className="text-4xl lg:text-5xl font-serif font-bold mb-4 text-balance">
             Our Design Process
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto text-balance">
+          <p className="text-xl text-white/60 max-w-2xl mx-auto text-balance">
             A streamlined approach from concept to completion
           </p>
         </motion.div>
@@ -60,7 +65,10 @@ export function InteriorProcess({ shouldReduceMotion }: InteriorProcessProps) {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : index * 0.1 }}
+              transition={{
+                duration: shouldReduceMotion ? 0 : 0.6,
+                delay: shouldReduceMotion ? 0 : index * 0.1,
+              }}
               className="flex gap-6 items-start"
             >
               <div className="text-6xl font-serif font-bold text-primary/20 shrink-0">
@@ -68,7 +76,9 @@ export function InteriorProcess({ shouldReduceMotion }: InteriorProcessProps) {
               </div>
               <div className="pt-2">
                 <h3 className="text-2xl font-bold mb-2">{step.title}</h3>
-                <p className="text-white/70 leading-relaxed">{step.description}</p>
+                <p className="text-white/70 leading-relaxed">
+                  {step.description}
+                </p>
               </div>
             </motion.div>
           ))}

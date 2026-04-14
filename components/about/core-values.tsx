@@ -1,15 +1,45 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Award, Heart, Target, Users, Lightbulb, Zap } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Award, Heart, Target, Users, Lightbulb, Zap } from "lucide-react";
 
 const values = [
-  { icon: Heart, title: 'Minimalism', description: 'Our design language focuses on clean lines, thoughtful material selection, and spaces that feel open, intuitive, and enduring.' },
-  { icon: Target, title: 'Precision', description: 'From concept and planning to detailed design, technical coordination, and execution — precision and attention to detail at every stage.' },
-  { icon: Lightbulb, title: 'Climate-Responsive', description: 'With a deep understanding of Bengaluru\'s climate and urban fabric, we design environments that are efficient and built to perform over time.' },
-  { icon: Users, title: 'Client-Centric', description: 'Every space should reflect the lifestyle, aspirations, and identity of its users while responding intelligently to its context.' },
-  { icon: Award, title: 'Quality', description: 'Every project is guided by a commitment to quality, detail, and client satisfaction — delivering spaces thoughtfully crafted to stand the test of time.' },
-  { icon: Zap, title: 'Unified Process', description: 'Architecture and interiors are conceived as a unified process — ensuring a seamless journey from concept to completion.' },
+  {
+    icon: Heart,
+    title: "Minimalism",
+    description:
+      "Our design language focuses on clean lines, thoughtful material selection, and spaces that feel open, intuitive, and enduring.",
+  },
+  {
+    icon: Target,
+    title: "Precision",
+    description:
+      "From concept and planning to detailed design, technical coordination, and execution — precision and attention to detail at every stage.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Climate-Responsive",
+    description:
+      "With a deep understanding of Bengaluru's climate and urban fabric, we design environments that are efficient and built to perform over time.",
+  },
+  {
+    icon: Users,
+    title: "Client-Centric",
+    description:
+      "Every space should reflect the lifestyle, aspirations, and identity of its users while responding intelligently to its context.",
+  },
+  {
+    icon: Award,
+    title: "Quality",
+    description:
+      "Every project is guided by a commitment to quality, detail, and client satisfaction — delivering spaces thoughtfully crafted to stand the test of time.",
+  },
+  {
+    icon: Zap,
+    title: "Unified Process",
+    description:
+      "Architecture and interiors are conceived as a unified process — ensuring a seamless journey from concept to completion.",
+  },
 ];
 
 type CoreValuesProps = {
@@ -30,7 +60,7 @@ export function CoreValues({ shouldReduceMotion }: CoreValuesProps) {
           <h2 className="text-4xl lg:text-5xl font-serif font-bold mb-4 text-balance">
             Our Core Values
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto text-balance">
+          <p className="text-xl text-white/60 max-w-2xl mx-auto text-balance">
             The principles that guide everything we do at Towny Studio
           </p>
         </motion.div>
@@ -44,14 +74,19 @@ export function CoreValues({ shouldReduceMotion }: CoreValuesProps) {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : index * 0.1 }}
+                transition={{
+                  duration: shouldReduceMotion ? 0 : 0.6,
+                  delay: shouldReduceMotion ? 0 : index * 0.1,
+                }}
                 className="bg-card border border-white/10 rounded-3xl p-8 hover:border-primary/50 transition-colors"
               >
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p className="text-white/70 leading-relaxed">{value.description}</p>
+                <p className="text-white/70 leading-relaxed">
+                  {value.description}
+                </p>
               </motion.div>
             );
           })}

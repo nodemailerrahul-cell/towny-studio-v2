@@ -19,7 +19,7 @@ export function Marquee({ items, className = '' }: MarqueeProps) {
         }}
       >
         {items.concat(items).map((item, index) => (
-          <span key={index} className="inline-block px-8 text-2xl md:text-4xl font-serif font-bold text-white/20">
+          <span key={index} className="inline-block px-8 text-2xl md:text-4xl font-serif font-bold text-white/60">
             {item} •
           </span>
         ))}
