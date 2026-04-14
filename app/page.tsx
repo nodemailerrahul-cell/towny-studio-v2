@@ -1,9 +1,12 @@
+import { Metadata } from 'next';
 import { HeroCarousel } from '@/components/hero-carousel';
-import { Marquee } from '@/components/marquee';
-// import { Packages } from '@/components/packages';
-import { Testimonials } from '@/components/testimonials';
-import { FAQ } from '@/components/faq';
 
+export const metadata: Metadata = {
+  title: 'Home',
+  description: 'Welcome to Towny Studio. We orchestrate space, light, and material to build environments that resonate with purpose.',
+};
+import { Marquee } from '@/components/marquee';
+import { Testimonials } from '@/components/testimonials';
 import { Stats } from '@/components/home/stats';
 import { AboutPreview } from '@/components/home/about-preview';
 import { GallerySection } from '@/components/home/gallery-section';
@@ -44,9 +47,6 @@ export default function HomePage() {
 
       {/* Testimonials */}
       <Testimonials />
-
-      {/* FAQ */}
-      <FAQ />
 
       {/* CTA */}
       <CtaSection />

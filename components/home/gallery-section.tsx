@@ -5,12 +5,11 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
-  { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80", alt: "Modern living room" },
-  { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80", alt: "Contemporary kitchen" },
-  { src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80", alt: "Luxury bedroom" },
-  { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80", alt: "Minimalist bathroom" },
-//   { src: "https://images.unsplash.com/photo-1600573472556-e636b90f7e09?w=800&q=80", alt: "Elegant dining room" },
-  { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80", alt: "Modern office space" },
+  { src: "/home/gallery_img_1.jpg", alt: "Modern living room" },
+  { src: "/home/gallery_img_2.jpg", alt: "Contemporary kitchen" },
+  { src: "/home/gallery_img_3.jpg", alt: "Luxury bedroom" },
+  { src: "/home/gallery_img_4.jpg", alt: "Minimalist bathroom" },
+  { src: "/home/gallery_img_5.jpg", alt: "Modern office space" },
 ];
 
 export function GallerySection() {
@@ -49,7 +48,9 @@ export function GallerySection() {
   }, [isPaused]);
 
   const handlePrev = () => {
-    setActive((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    setActive(
+      (prev) => (prev - 1 + galleryImages.length) % galleryImages.length,
+    );
     startAutoPlay();
   };
 
@@ -65,8 +66,9 @@ export function GallerySection() {
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold mb-4">
           Our Recent Work
         </h2>
-        <p className="text-sm sm:text-lg text-white/60 max-w-2xl mx-auto">
-          Explore our portfolio of stunning interiors and architectural masterpieces
+        <p className="text-xl sm:text-xl text-white/60 max-w-2xl mx-auto">
+          Explore our portfolio of stunning interiors and architectural
+          masterpieces
         </p>
       </div>
 
@@ -134,13 +136,9 @@ export function GallerySection() {
                   style={{
                     filter: offset === 0 ? "none" : "blur(2px)",
                     boxShadow:
-                      offset === 0
-                        ? "0px 20px 60px rgba(0,0,0,0.6)"
-                        : "none",
+                      offset === 0 ? "0px 20px 60px rgba(0,0,0,0.6)" : "none",
                     border:
-                      offset === 0
-                        ? "1px solid rgba(255,255,255,0.2)"
-                        : "none",
+                      offset === 0 ? "1px solid rgba(255,255,255,0.2)" : "none",
                   }}
                   whileHover={offset === 0 ? { scale: 1.08 } : {}}
                 />

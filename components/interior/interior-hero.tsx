@@ -1,8 +1,14 @@
-'use client';
+"use client";
 
-import { Hero, BgGradient, TextStagger, AnimatedContainer } from '@/components/ui/hero-animated';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import {
+  Hero,
+  BgGradient,
+  TextStagger,
+  AnimatedContainer,
+} from "@/components/ui/hero-animated";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ContactModal } from "@/components/contact/contact-modal";
 
 type InteriorHeroProps = {
   shouldReduceMotion: boolean;
@@ -11,17 +17,6 @@ type InteriorHeroProps = {
 export function InteriorHero({ shouldReduceMotion }: InteriorHeroProps) {
   return (
     <Hero className="px-6 py-20 text-white">
-
-      {/* Background Image */}
-      <div className="absolute inset-0 -z-20">
-        <img
-          src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80"
-          alt="Interior design"
-          className="w-full h-full object-cover opacity-25"
-        />
-        <div className="absolute inset-0 bg-black/80" />
-      </div>
-
       {/* Gradient overlay */}
       <BgGradient />
 
@@ -33,10 +28,10 @@ export function InteriorHero({ shouldReduceMotion }: InteriorHeroProps) {
       />
 
       {/* Description */}
-      <AnimatedContainer className="mt-6 max-w-2xl text-white/70 text-lg leading-relaxed">
-        Rooted in minimalistic design philosophy, our interiors emphasize clarity,
-        balance, and purposeful simplicity &mdash; creating spaces that are elegant,
-        functional, and timeless.
+      <AnimatedContainer className="mt-6 max-w-2xl text-white/70 text-xl leading-relaxed">
+        Rooted in minimalistic design philosophy, our interiors emphasize
+        clarity, balance, and purposeful simplicity &mdash; creating spaces that
+        are elegant, functional, and timeless.
       </AnimatedContainer>
 
       {/* Buttons */}
@@ -44,20 +39,21 @@ export function InteriorHero({ shouldReduceMotion }: InteriorHeroProps) {
         className="mt-10 flex flex-col sm:flex-row gap-4"
         delay={shouldReduceMotion ? 0 : 0.5}
       >
-        <Button asChild size="lg" className="rounded-full px-8 text-lg">
-          <Link href="/contact">Start Your Project</Link>
-        </Button>
+        <ContactModal>
+          <Button size="lg" className="rounded-full px-8 text-xl">
+            Start Your Project
+          </Button>
+        </ContactModal>
 
         <Button
           asChild
           size="lg"
           variant="outline"
-          className="rounded-full px-8 text-lg bg-transparent border-white/30 text-white hover:bg-white hover:text-black"
+          className="rounded-full px-8 text-xl bg-transparent border-white/30 text-white hover:bg-white hover:text-black"
         >
-          <Link href="/interior">Explore Designs</Link>
+          <Link href="/architecture">Explore Designs</Link>
         </Button>
       </AnimatedContainer>
-
     </Hero>
   );
 }

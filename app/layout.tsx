@@ -27,9 +27,44 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title: 'Towny Studio - Architecture & Interior Design | Bengaluru',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://townystudio.com'),
+  title: {
+    default: 'Towny Studio - Architecture & Interior Design | Bengaluru',
+    template: '%s | Towny Studio'
+  },
   description: 'Towny Studio is a multidisciplinary design practice integrating architecture and interior design. Rooted in minimalism, we deliver elegant, functional, and timeless spaces in Bengaluru.',
-  generator: 'v0.app',
+  keywords: ['Architecture', 'Interior Design', 'Bengaluru Architects', 'Minimalist Design', 'Luxury Interiors', 'Towny Studio'],
+  authors: [{ name: 'Towny Studio' }],
+  creator: 'Towny Studio',
+  publisher: 'Towny Studio',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://townystudio.com',
+    title: 'Towny Studio - Architecture & Interior Design',
+    description: 'Towny Studio is a multidisciplinary design practice integrating architecture and interior design. Rooted in minimalism, we deliver elegant, functional, and timeless spaces in Bengaluru.',
+    siteName: 'Towny Studio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Towny Studio - Architecture & Interior Design',
+    description: 'Towny Studio is a multidisciplinary design practice integrating architecture and interior design. Rooted in minimalism, we deliver elegant, functional, and timeless spaces in Bengaluru.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  generator: 'quantech.pro',
   icons: {
     icon: [
       {

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
+import { motion } from "framer-motion";
+import { ArrowDown } from "lucide-react";
 
 type ContactHeroProps = {
   shouldReduceMotion: boolean;
@@ -22,10 +22,12 @@ export function ContactHero({ shouldReduceMotion }: ContactHeroProps) {
       </div>
 
       {/* Decorative grid lines */}
-      <div className="absolute inset-0 -z-10 opacity-[0.03]"
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.03]"
         style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
         }}
       />
 
@@ -40,8 +42,11 @@ export function ContactHero({ shouldReduceMotion }: ContactHeroProps) {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.5, delay: shouldReduceMotion ? 0 : 0.2 }}
-            className="text-primary text-sm uppercase tracking-[0.3em] font-medium mb-6"
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.5,
+              delay: shouldReduceMotion ? 0 : 0.2,
+            }}
+            className="text-primary text-lg uppercase tracking-[0.3em] font-medium mb-6"
           >
             Get in Touch
           </motion.p>
@@ -49,27 +54,36 @@ export function ContactHero({ shouldReduceMotion }: ContactHeroProps) {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.7, delay: shouldReduceMotion ? 0 : 0.3 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.7,
+              delay: shouldReduceMotion ? 0 : 0.3,
+            }}
             className="text-5xl lg:text-7xl font-serif font-bold mb-8 text-balance"
           >
-            Let&apos;s Create{' '}
-            <span className="text-primary">Together</span>
+            Let&apos;s Create <span className="text-primary">Together</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.5 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.6,
+              delay: shouldReduceMotion ? 0 : 0.5,
+            }}
             className="text-xl text-white/70 leading-relaxed text-balance max-w-2xl mx-auto mb-12"
           >
-            Whether designing a private residence or a large-scale commercial space,
-            Towny Studio brings clarity, creativity, and control to the entire process.
+            Whether designing a private residence or a large-scale commercial
+            space, Towny Studio brings clarity, creativity, and control to the
+            entire process.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.8 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.6,
+              delay: shouldReduceMotion ? 0 : 0.8,
+            }}
             className="flex justify-center"
           >
             <a

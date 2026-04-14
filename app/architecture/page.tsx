@@ -3,7 +3,6 @@
 import { useReducedMotion } from 'framer-motion';
 
 import { ArchitectureHero } from '@/components/architecture/architecture-hero';
-import { ServicesSection } from '@/components/architecture/services-section';
 import { ExpertiseSection } from '@/components/architecture/expertise-section';
 import { DesignPhilosophy } from '@/components/architecture/design-philosophy';
 // import { ArchitecturePortfolio } from '@/components/architecture/architecture-portfolio';
@@ -17,7 +16,6 @@ export default function ArchitecturePage() {
   return (
     <main className="min-h-screen bg-black text-white pt-16 lg:pt-20">
       <ArchitectureHero shouldReduceMotion={shouldReduceMotion} />
-      <ServicesSection shouldReduceMotion={shouldReduceMotion} />
       <ExpertiseSection shouldReduceMotion={shouldReduceMotion} />
       <DesignPhilosophy shouldReduceMotion={shouldReduceMotion} />
       {/* <ArchitecturePortfolio shouldReduceMotion={shouldReduceMotion} /> */}
