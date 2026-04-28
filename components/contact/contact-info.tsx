@@ -7,7 +7,8 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Visit Our Studio',
-    content: '18/1, Wellington Street, Shanthinagar, Langford Gardens, Bengaluru, Karnataka 560025',
+    content:
+      '18/1, Wellington Street, Shanthinagar, Langford Gardens, Bengaluru, Karnataka 560025',
     detail: 'Schedule a visit to discuss your project in person',
     link: 'https://maps.google.com/?q=18/1+Wellington+Street+Shanthinagar+Langford+Gardens+Bengaluru+Karnataka+560025',
     color: 'from-emerald-500/20 to-emerald-500/5',
@@ -54,7 +55,9 @@ export function ContactInfo({ shouldReduceMotion }: ContactInfoProps) {
   return (
     <section className="py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        {/* KEY FIX: items-stretch */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
           {contactInfo.map((info, index) => {
             const Icon = info.icon;
             const isClickable = !!info.link;
@@ -70,32 +73,51 @@ export function ContactInfo({ shouldReduceMotion }: ContactInfoProps) {
                   duration: shouldReduceMotion ? 0 : 0.5,
                   delay: shouldReduceMotion ? 0 : index * 0.1,
                 }}
+                className="h-full" // ensures wrapper fills grid cell
               >
                 <Wrapper
                   {...(isClickable ? { href: info.link! } : {})}
-                  className={`group relative block bg-card border border-white/[0.07] rounded-2xl p-7 transition-all duration-300 ${info.borderColor} hover:bg-white/[0.02]`}
+                  
+                  // KEY FIX: h-full + flex column
+                  className={`group relative flex flex-col h-full bg-card border border-white/[0.07] rounded-2xl p-7 transition-all duration-300 ${info.borderColor} hover:bg-white/[0.02]`}
                 >
-                  {/* Gradient glow on hover */}
-                  <div className={`absolute -inset-px rounded-2xl bg-gradient-to-b ${info.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl`} />
+                  {/* Glow */}
+                  <div
+                    className={`absolute -inset-px rounded-2xl bg-gradient-to-b ${info.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl`}
+                  />
 
+                  {/* Top */}
                   <div className="flex items-start justify-between mb-5">
-                    <div className={`w-11 h-11 rounded-xl bg-white/[0.05] flex items-center justify-center group-hover:bg-white/[0.08] transition-colors`}>
+                    <div className="w-11 h-11 rounded-xl bg-white/[0.05] flex items-center justify-center group-hover:bg-white/[0.08] transition-colors">
                       <Icon className={`w-5 h-5 ${info.iconColor}`} />
                     </div>
+
                     {isClickable && (
                       <ArrowUpRight className="w-4 h-4 text-white/20 group-hover:text-white/60 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     )}
                   </div>
 
-                  <h3 className="font-semibold text-white/90 mb-1.5 text-[15px]">
-                    {info.title}
-                  </h3>
-                  <p className={`text-base font-medium mb-2 ${isClickable ? 'text-white group-hover:text-primary transition-colors' : 'text-white/80'}`}>
-                    {info.content}
-                  </p>
-                  <p className="text-xs text-white/40">
-                    {info.detail}
-                  </p>
+                  {/* Content */}
+                  <div className="flex flex-col flex-grow">
+                    <h3 className="font-semibold text-white/90 mb-1.5 text-[15px]">
+                      {info.title}
+                    </h3>
+
+                    <p
+                      className={`text-base font-medium mb-2 ${
+                        isClickable
+                          ? 'text-white group-hover:text-primary transition-colors'
+                          : 'text-white/80'
+                      }`}
+                    >
+                      {info.content}
+                    </p>
+
+                    {/* KEY FIX: push detail to bottom */}
+                    <p className="text-xs text-white/40 mt-auto">
+                      {info.detail}
+                    </p>
+                  </div>
                 </Wrapper>
               </motion.div>
             );

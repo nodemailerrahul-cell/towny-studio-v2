@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ContactModal } from "../contact/contact-modal";
 
 type ArchitectureCtaProps = {
   shouldReduceMotion: boolean;
@@ -25,9 +26,11 @@ export function ArchitectureCta({ shouldReduceMotion }: ArchitectureCtaProps) {
             Let&apos;s collaborate to create architectural excellence that
             inspires.
           </p>
+          <ContactModal>
           <Button asChild size="lg" className="rounded-full text-xl px-8">
-            <Link href="/contact">Schedule Consultation</Link>
+            <Link href="">Schedule Consultation</Link>
           </Button>
+          </ContactModal>
         </motion.div>
       </div>
     </section>

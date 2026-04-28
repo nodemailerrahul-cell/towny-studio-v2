@@ -12,7 +12,7 @@ type ArchitectureHeroProps = {
 export function ArchitectureHero({
   shouldReduceMotion,
 }: ArchitectureHeroProps) {
-  const heading = "Designing Spaces That Endure";
+  const heading = "Architectural Excellence";
 
   const containerVariants: Variants = {
     hidden: {},
@@ -40,7 +40,6 @@ export function ArchitectureHero({
 
   return (
     <section className="relative py-32 lg:py-40">
-
       {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -64,11 +63,12 @@ export function ArchitectureHero({
           </motion.h1>
 
           <p className="text-xl text-white/75 mb-8 leading-relaxed text-balance">
-            At <span className="text-white font-medium">Towny Studio</span>, we approach architecture and interiors as one cohesive discipline.
-            From early concept and spatial strategy to detailed design and on-site execution,
-            every decision is intentional. Our work prioritizes climate responsiveness,
-            material integrity, and long-term performance—creating environments that are as
-            functional as they are timeless.
+            We craft visionary spaces that transcend the ordinary. At{" "}
+            <span className="text-white font-medium">Towny Studio</span>, our
+            architectural practice is rooted in structural integrity,
+            sustainable innovation, and timeless aesthetics. We don't just build
+            structures; we design enduring environments that elevate human
+            experiences and respect the natural landscape.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -82,9 +82,15 @@ export function ArchitectureHero({
               asChild
               size="lg"
               variant="outline"
-              className="rounded-full text-lg px-8 border-white/30 text-white hover:bg-white/10"
+              className="rounded-full px-8 text-lg
+  border border-white/40 bg-transparent text-white
+  transition-all duration-300
+  hover:!bg-white hover:!text-black hover:!border-white
+"
             >
-              <Link href="/interior">View Our Work</Link>
+              <Link href="/interior#interior-portfolio">
+                View Our Work
+              </Link>
             </Button>
           </div>
         </motion.div>

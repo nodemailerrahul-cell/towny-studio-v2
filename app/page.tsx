@@ -9,6 +9,7 @@ import { Marquee } from '@/components/marquee';
 import { Testimonials } from '@/components/testimonials';
 import { Stats } from '@/components/home/stats';
 import { AboutPreview } from '@/components/home/about-preview';
+import { WhatSetsUsApart } from '@/components/home/what-sets-us-apart';
 import { GallerySection } from '@/components/home/gallery-section';
 import { CtaSection } from '@/components/home/cta-section';
 
@@ -38,6 +39,9 @@ export default function HomePage() {
 
       {/* About Preview */}
       <AboutPreview />
+
+      {/* What Sets Us Apart */}
+      <WhatSetsUsApart />
 
       {/* Gallery */}
       <GallerySection />

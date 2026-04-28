@@ -16,46 +16,40 @@ type PortfolioItem = {
 
 const portfolioImages: PortfolioItem[] = [
   {
-    src: "/interior/interior_1.jpg",
-    alt: "Modern living room with minimalist design",
-    title: "Living Room",
-    description: "Soft textures, warm neutrals, and calm proportions.",
+    src: "/interior-port/1.png",
+    alt: "Modern kitchen with minimalist design",
+    title: "Modern Kitchen",
+    description: "Minimalist layout with clean lines, efficient storage, and a contemporary finish.",
   },
   {
-    src: "/interior/interior_2.jpg",
+    src: "/interior-port/2.jpg",
     alt: "Contemporary kitchen with marble countertops",
     title: "Kitchen",
-    description: "Marble surfaces and clean lines for a refined finish.",
+    description: "Elegant kitchen design featuring marble countertops and a sleek, functional layout.",
   },
   {
-    src: "/interior/interior_3.jpg",
-    alt: "Luxury master bedroom",
-    title: "Bedroom",
-    description: "A quiet, layered space built for rest and comfort.",
+    src: "/interior-port/3.jpg",
+    alt: "Modular kitchen setup",
+    title: "Modular Kitchen",
+    description: "Smart modular design with optimized storage, seamless finishes, and practical workflow.",
   },
   {
-    src: "/interior/interior_4.jpg",
-    alt: "Minimalist bathroom design",
-    title: "Bathroom",
-    description: "Minimal spa details with a crisp and serene palette.",
+    src: "/interior-port/5.jpg",
+    alt: "Premium wardrobe design",
+    title: "Premium Wardrobe",
+    description: "High-end wardrobe with refined finishes, ample storage, and a modern aesthetic.",
   },
   {
-    src: "/interior/interior_5.jpg",
-    alt: "Modern office interior",
-    title: "Office",
-    description: "Focused, modern interiors with a polished edge.",
-  },
-  {
-    src: "/interior/interior_6.jpg",
-    alt: "Contemporary living space",
+    src: "/interior-port/6.jpg",
+    alt: "Contemporary lounge area",
     title: "Lounge",
-    description: "Contemporary openness with a soft layered feel.",
+    description: "Relaxed lounge space with balanced lighting, soft textures, and a modern ambiance.",
   },
   {
-    src: "/interior/interior_7.jpg",
-    alt: "Luxury kitchen island",
+    src: "/interior-port/7.jpg",
+    alt: "Luxury island kitchen",
     title: "Island Kitchen",
-    description: "Statement island design with a premium visual rhythm.",
+    description: "Spacious island kitchen designed for functionality, style, and social interaction.",
   },
 ];
 
@@ -176,7 +170,7 @@ export function InteriorPortfolio({
   }, []);
 
   return (
-    <section className="py-20 lg:py-32">
+    <section id="interior-portfolio" className="py-20 lg:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
