@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -35,57 +35,99 @@ const images = [
   '/interior-port/25.jpeg',
   '/interior-port/26.jpeg',
   '/interior-port/27.jpeg',
+  '/interior-port/28.jpeg',
 ];
 
-function getSpan(index: number) {
-  switch (index % 7) {
+/**
+ * Deterministic layout pattern for the grid.
+ * Each item gets a Tailwind class for its grid behaviour.
+ * Pattern repeats every 8 items and is designed so that
+ * a 3-column desktop grid has NO holes.
+ *
+ * Mobile (1 col) and tablet (2 col) always use single-span items
+ * so they can never produce gaps.
+ */
+function getGridClasses(index: number): string {
+  const base = 'relative overflow-hidden cursor-pointer group';
+
+  // On mobile / tablet every tile is a plain 1×1 square
+  // On desktop (md) we introduce some variety
+  switch (index % 8) {
+    // tall tile — spans 2 rows, occupies 1 column
     case 0:
-      return 'md:col-span-2 md:row-span-2';
+      return `${base} aspect-square md:aspect-auto md:row-span-2`;
+    // wide tile — spans 2 columns
     case 3:
-      return 'md:col-span-2';
-    case 5:
-      return 'md:row-span-2';
+      return `${base} aspect-square md:aspect-video md:col-span-2`;
+    // all other tiles — simple 1×1
     default:
-      return '';
+      return `${base} aspect-square`;
   }
 }
 
 export function InteriorPortfolio({ shouldReduceMotion }: Props) {
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+
+  /* ---------- lightbox keyboard nav ---------- */
+  const goPrev = useCallback(
+    () =>
+      setLightbox((i) =>
+        i === null ? null : i === 0 ? images.length - 1 : i - 1,
+      ),
+    [],
+  );
+
+  const goNext = useCallback(
+    () =>
+      setLightbox((i) =>
+        i === null ? null : i === images.length - 1 ? 0 : i + 1,
+      ),
+    [],
+  );
+
+  const closeLightbox = useCallback(() => setLightbox(null), []);
 
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    setIsMobile(mq.matches);
+    if (lightbox === null) return;
 
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener('change', handler);
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'ArrowLeft') goPrev();
+      else if (e.key === 'ArrowRight') goNext();
+      else if (e.key === 'Escape') closeLightbox();
+    }
 
-    return () => mq.removeEventListener('change', handler);
-  }, []);
+    // Lock body scroll while lightbox is open
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
 
-  const reduce = shouldReduceMotion || isMobile;
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [lightbox, goPrev, goNext, closeLightbox]);
 
   return (
     <section className="py-10 lg:py-16">
       <div className="mx-auto max-w-7xl px-3 sm:px-5">
-
-        {/* HEADER */}
+        {/* ── HEADER ─────────────────────────────── */}
         <div className="mb-8 lg:mb-12 text-center">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white">
             Interior Portfolio
           </h2>
           <p className="mt-2 text-sm sm:text-base text-white/60 max-w-xl mx-auto">
-            A curated collection of interior design works showcasing space, light, and material.
+            A curated collection of interior design works showcasing space,
+            light, and material.
           </p>
         </div>
 
-        {/* GRID */}
-        <div className="
-          grid grid-cols-1 gap-1
-          sm:grid-cols-2
-          md:grid-cols-3 md:grid-flow-dense md:gap-3
-        ">
+        {/* ── GRID ───────────────────────────────── */}
+        <div
+          className="
+            grid grid-cols-2 gap-1.5
+            sm:grid-cols-2 sm:gap-2
+            md:grid-cols-3 md:gap-3
+          "
+        >
           {images.map((src, i) => (
             <motion.div
               key={src}
@@ -93,87 +135,153 @@ export function InteriorPortfolio({ shouldReduceMotion }: Props) {
               role="button"
               tabIndex={0}
               onKeyDown={(e) => e.key === 'Enter' && setLightbox(i)}
-              initial={reduce ? false : { opacity: 0 }}
-              animate={reduce ? {} : { opacity: 1 }}
-              transition={{ duration: 0.4, delay: reduce ? 0 : i * 0.02 }}
-              className={`
-                group relative w-full aspect-square
-                cursor-pointer overflow-hidden
-                rounded-none
-                border border-white/10 bg-black
-                ${getSpan(i)}
-              `}
+              /* ── animation ── */
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={
+                shouldReduceMotion ? {} : { opacity: 1, y: 0 }
+              }
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: 0.45,
+                delay: shouldReduceMotion ? 0 : (i % 6) * 0.06,
+                ease: 'easeOut',
+              }}
+              className={`${getGridClasses(i)} border border-white/10 bg-neutral-900`}
             >
               <Image
                 src={src}
-                alt=""
+                alt={`Interior portfolio image ${i + 1}`}
                 fill
-                sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+                sizes="(max-width:640px) 50vw, (max-width:1024px) 50vw, 33vw"
                 className={`
                   object-cover
-                  ${reduce ? '' : 'transition-transform duration-500 group-hover:scale-102'}
+                  ${shouldReduceMotion ? '' : 'transition-transform duration-500 group-hover:scale-105'}
                 `}
-                priority={i < 4}
+                priority={i < 6}
               />
 
-              {/* overlay */}
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition" />
+              {/* hover overlay */}
+              <div
+                className="
+                  absolute inset-0
+                  bg-gradient-to-t from-black/40 via-transparent to-transparent
+                  opacity-0 group-hover:opacity-100
+                  transition-opacity duration-300
+                "
+              />
+
+              {/* zoom icon on hover */}
+              <div
+                className="
+                  absolute inset-0 flex items-center justify-center
+                  opacity-0 group-hover:opacity-100
+                  transition-opacity duration-300 pointer-events-none
+                "
+              >
+                <span className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-lg">
+                  ⤢
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* LIGHTBOX */}
+      {/* ── LIGHTBOX ─────────────────────────────── */}
       <AnimatePresence>
         {lightbox !== null && (
           <motion.div
-            initial={reduce ? { opacity: 1 } : { opacity: 0 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
-            onClick={() => setLightbox(null)}
+            onClick={closeLightbox}
           >
+            {/* image counter */}
+            <span className="absolute top-4 left-4 text-white/50 text-sm font-mono select-none">
+              {lightbox + 1} / {images.length}
+            </span>
+
+            {/* close button */}
+            <button
+              onClick={closeLightbox}
+              className="
+                absolute top-4 right-4 z-10
+                w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm
+                flex items-center justify-center
+                text-white/80 hover:text-white hover:bg-white/20
+                transition-colors text-lg
+              "
+              aria-label="Close lightbox"
+            >
+              ✕
+            </button>
+
+            {/* main image */}
             <div
-              className="relative w-full h-full max-w-6xl max-h-[90vh]"
+              className="relative w-full h-full max-w-6xl max-h-[90vh] mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
-                src={images[lightbox]}
-                alt=""
-                fill
-                sizes="100vw"
-                className="object-contain"
-                priority
-              />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={lightbox}
+                  initial={
+                    shouldReduceMotion ? false : { opacity: 0, scale: 0.97 }
+                  }
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={
+                    shouldReduceMotion ? undefined : { opacity: 0, scale: 0.97 }
+                  }
+                  transition={{ duration: 0.2 }}
+                  className="relative w-full h-full"
+                >
+                  <Image
+                    src={images[lightbox]}
+                    alt={`Interior portfolio image ${lightbox + 1}`}
+                    fill
+                    sizes="100vw"
+                    className="object-contain"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
 
-              {/* navigation */}
+              {/* prev / next */}
               <button
-                onClick={() =>
-                  setLightbox((i) =>
-                    i === 0 ? images.length - 1 : (i ?? 0) - 1
-                  )
-                }
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-white/80 text-3xl"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goPrev();
+                }}
+                className="
+                  absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10
+                  w-10 h-10 sm:w-12 sm:h-12 rounded-full
+                  bg-white/10 backdrop-blur-sm
+                  flex items-center justify-center
+                  text-white/80 hover:text-white hover:bg-white/20
+                  transition-colors text-xl sm:text-2xl
+                "
+                aria-label="Previous image"
               >
                 ‹
               </button>
 
               <button
-                onClick={() =>
-                  setLightbox((i) =>
-                    i === images.length - 1 ? 0 : (i ?? 0) + 1
-                  )
-                }
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/80 text-3xl"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goNext();
+                }}
+                className="
+                  absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10
+                  w-10 h-10 sm:w-12 sm:h-12 rounded-full
+                  bg-white/10 backdrop-blur-sm
+                  flex items-center justify-center
+                  text-white/80 hover:text-white hover:bg-white/20
+                  transition-colors text-xl sm:text-2xl
+                "
+                aria-label="Next image"
               >
                 ›
-              </button>
-
-              <button
-                onClick={() => setLightbox(null)}
-                className="absolute top-4 right-4 text-white/80 text-xl"
-              >
-                ✕
               </button>
             </div>
           </motion.div>
