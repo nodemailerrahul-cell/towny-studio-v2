@@ -1,386 +1,184 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { AnimatePresence, motion } from 'framer-motion';
 
-type InteriorPortfolioProps = {
+type Props = {
   shouldReduceMotion: boolean;
 };
 
-type PortfolioItem = {
-  src: string;
-  alt: string;
-  title: string;
-  description: string;
-};
-
-const portfolioImages: PortfolioItem[] = [
-  {
-    src: "/interior-port/1.png",
-    alt: "Modern kitchen with minimalist design",
-    title: "Modern Kitchen",
-    description: "Minimalist layout with clean lines, efficient storage, and a contemporary finish.",
-  },
-  {
-    src: "/interior-port/2.jpg",
-    alt: "Contemporary kitchen with marble countertops",
-    title: "Kitchen",
-    description: "Elegant kitchen design featuring marble countertops and a sleek, functional layout.",
-  },
-  {
-    src: "/interior-port/3.jpg",
-    alt: "Modular kitchen setup",
-    title: "Modular Kitchen",
-    description: "Smart modular design with optimized storage, seamless finishes, and practical workflow.",
-  },
-  {
-    src: "/interior-port/5.jpg",
-    alt: "Premium wardrobe design",
-    title: "Premium Wardrobe",
-    description: "High-end wardrobe with refined finishes, ample storage, and a modern aesthetic.",
-  },
-  {
-    src: "/interior-port/6.jpg",
-    alt: "Contemporary lounge area",
-    title: "Lounge",
-    description: "Relaxed lounge space with balanced lighting, soft textures, and a modern ambiance.",
-  },
-  {
-    src: "/interior-port/7.jpg",
-    alt: "Luxury island kitchen",
-    title: "Island Kitchen",
-    description: "Spacious island kitchen designed for functionality, style, and social interaction.",
-  },
+const images = [
+  '/interior-port/1.jpg',
+  '/interior-port/2.jpg',
+  '/interior-port/3.jpg',
+  '/interior-port/4.JPG',
+  '/interior-port/5.png',
+  '/interior-port/6.jpg',
+  '/interior-port/7.jpg',
+  '/interior-port/8.jpg',
+  '/interior-port/9.jpg',
+  '/interior-port/10.jpg',
+  '/interior-port/12.jpg',
+  '/interior-port/13.jpg',
+  '/interior-port/14.jpg',
+  '/interior-port/15.jpg',
+  '/interior-port/16.jpg',
+  '/interior-port/17.jpg',
+  '/interior-port/18.jpg',
+  '/interior-port/19.jpg',
+  '/interior-port/20.jpg',
+  '/interior-port/21.jpg',
+  '/interior-port/22.jpg',
+  '/interior-port/23.jpg',
+  '/interior-port/24.jpg',
+  '/interior-port/25.jpeg',
+  '/interior-port/26.jpeg',
+  '/interior-port/27.jpeg',
 ];
 
-function ChevronLeftIcon({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.25"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M15 18l-6-6 6-6" />
-    </svg>
-  );
+function getSpan(index: number) {
+  switch (index % 7) {
+    case 0:
+      return 'md:col-span-2 md:row-span-2';
+    case 3:
+      return 'md:col-span-2';
+    case 5:
+      return 'md:row-span-2';
+    default:
+      return '';
+  }
 }
 
-function ChevronRightIcon({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.25"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M9 6l6 6-6 6" />
-    </svg>
-  );
-}
-
-export function InteriorPortfolio({
-  shouldReduceMotion,
-}: InteriorPortfolioProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+export function InteriorPortfolio({ shouldReduceMotion }: Props) {
+  const [lightbox, setLightbox] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const goPrev = () => {
-    setActiveIndex((current) =>
-      current === 0 ? portfolioImages.length - 1 : current - 1,
-    );
-  };
-
-  const goNext = () => {
-    setActiveIndex((current) =>
-      current === portfolioImages.length - 1 ? 0 : current + 1,
-    );
-  };
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    const mq = window.matchMedia('(max-width: 768px)');
+    setIsMobile(mq.matches);
 
-    const mediaQuery = window.matchMedia("(max-width: 1023px)");
-    setIsMobile(mediaQuery.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
 
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsMobile(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    return () => mq.removeEventListener('change', handler);
   }, []);
 
-  useEffect(() => {
-    if (!isMobile || !containerRef.current) return;
-
-    const container = containerRef.current;
-    const targetScroll = activeIndex * container.offsetWidth;
-
-    container.scrollTo({
-      left: targetScroll,
-      behavior: shouldReduceMotion ? "auto" : "smooth",
-    });
-  }, [activeIndex, isMobile, shouldReduceMotion]);
-
-  useEffect(() => {
-    if (!isMobile || !containerRef.current) return;
-
-    const container = containerRef.current;
-
-    const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const itemWidth = container.offsetWidth;
-      let newIndex = Math.round(scrollLeft / itemWidth);
-      newIndex = Math.max(0, Math.min(newIndex, portfolioImages.length - 1));
-
-      if (newIndex !== activeIndex) {
-        setActiveIndex(newIndex);
-      }
-    };
-
-    container.addEventListener("scroll", handleScroll, { passive: true });
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, [isMobile, activeIndex]);
-
-  useEffect(() => {
-    if (!isMobile && containerRef.current) {
-      containerRef.current.scrollLeft = 0;
-    }
-  }, [isMobile]);
-
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowLeft") goPrev();
-      if (event.key === "ArrowRight") goNext();
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const reduce = shouldReduceMotion || isMobile;
 
   return (
-    <section id="interior-portfolio" className="py-20 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.55 }}
-          className="mb-10 text-center"
-        >
-          <p className="mb-3 text-xs uppercase tracking-[0.35em] text-white/45">
-            Selected work
-          </p>
-          <h2 className="text-4xl font-serif font-bold text-balance lg:text-5xl">
+    <section className="py-10 lg:py-16">
+      <div className="mx-auto max-w-7xl px-3 sm:px-5">
+
+        {/* HEADER */}
+        <div className="mb-8 lg:mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white">
             Interior Portfolio
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-xl text-white/60 text-balance">
-            Explore a curated collection of interiors with a more tactile,
-            click-friendly layout.
+          <p className="mt-2 text-sm sm:text-base text-white/60 max-w-xl mx-auto">
+            A curated collection of interior design works showcasing space, light, and material.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="relative">
-          <div className="mb-4 flex items-center justify-between gap-3">
-            <p className="text-lg text-white/45">
-              {isMobile
-                ? "Swipe or tap a card to explore"
-                : "Click any panel, use the arrows, or press ← →"}
-            </p>
-
-            <p className="text-lg text-white/45">
-              {String(activeIndex + 1).padStart(2, "0")} /{" "}
-              {String(portfolioImages.length).padStart(2, "0")}
-            </p>
-          </div>
-
-          {/* Desktop arrows only */}
-          <div className="absolute left-2 top-1/2 z-30 hidden -translate-y-1/2 lg:block">
-            <button
-              type="button"
-              onClick={goPrev}
-              aria-label="Previous image"
-              className="grid h-11 w-11 place-items-center border border-white/15 bg-black/45 text-white shadow-lg backdrop-blur-md transition hover:bg-black/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+        {/* GRID */}
+        <div className="
+          grid grid-cols-1 gap-1
+          sm:grid-cols-2
+          md:grid-cols-3 md:grid-flow-dense md:gap-3
+        ">
+          {images.map((src, i) => (
+            <motion.div
+              key={src}
+              onClick={() => setLightbox(i)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && setLightbox(i)}
+              initial={reduce ? false : { opacity: 0 }}
+              animate={reduce ? {} : { opacity: 1 }}
+              transition={{ duration: 0.4, delay: reduce ? 0 : i * 0.02 }}
+              className={`
+                group relative w-full aspect-square
+                cursor-pointer overflow-hidden
+                rounded-none
+                border border-white/10 bg-black
+                ${getSpan(i)}
+              `}
             >
-              <ChevronLeftIcon className="h-5 w-5" />
-            </button>
-          </div>
+              <Image
+                src={src}
+                alt=""
+                fill
+                sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+                className={`
+                  object-cover
+                  ${reduce ? '' : 'transition-transform duration-500 group-hover:scale-102'}
+                `}
+                priority={i < 4}
+              />
 
-          <div className="absolute right-2 top-1/2 z-30 hidden -translate-y-1/2 lg:block">
-            <button
-              type="button"
-              onClick={goNext}
-              aria-label="Next image"
-              className="grid h-11 w-11 place-items-center border border-white/15 bg-black/45 text-white shadow-lg backdrop-blur-md transition hover:bg-black/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-            >
-              <ChevronRightIcon className="h-5 w-5" />
-            </button>
-          </div>
-
-          <motion.div
-            ref={containerRef}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.65 }}
-            className={`flex h-[clamp(380px,62vh,560px)] ${
-              isMobile
-                ? "overflow-x-auto snap-x snap-mandatory gap-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
-                : "overflow-hidden gap-3"
-            }`}
-            role="region"
-            aria-label="Interior portfolio gallery"
-          >
-            {portfolioImages.map((item, index) => {
-              const isActive = index === activeIndex;
-
-              return (
-                <button
-                  key={item.src}
-                  type="button"
-                  aria-pressed={isActive}
-                  aria-label={`View ${item.title}`}
-                  onClick={() => setActiveIndex(index)}
-                  onMouseEnter={() => {
-                    if (!shouldReduceMotion && !isMobile) setActiveIndex(index);
-                  }}
-                  onFocus={() => setActiveIndex(index)}
-                  className="group relative isolate overflow-hidden border border-white/10 bg-zinc-950 text-left outline-none transition-[transform,box-shadow,filter,opacity] duration-700 ease-out focus-visible:ring-2 focus-visible:ring-white/70"
-                  style={{
-                    ...(isMobile
-                      ? {
-                          flex: "0 0 100%",
-                          width: "100%",
-                          scrollSnapAlign: "start",
-                        }
-                      : {
-                          flex: isActive ? "7 1 0%" : "1 1 0%",
-                          minWidth: isActive
-                            ? "min(58vw, 760px)"
-                            : "clamp(96px, 10vw, 170px)",
-                        }),
-                    opacity: 1,
-                    boxShadow: isActive
-                      ? "0 26px 70px rgba(0,0,0,0.45)"
-                      : "0 12px 30px rgba(0,0,0,0.22)",
-                    transitionDuration: shouldReduceMotion ? "0ms" : "700ms",
-                  }}
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="absolute inset-0 h-full w-full object-cover"
-                    draggable={false}
-                    style={{
-                      transform: isActive ? "scale(1.03)" : "scale(1.08)",
-                      filter: isActive
-                        ? "saturate(1.02) contrast(1.02) brightness(0.98)"
-                        : "saturate(0.88) contrast(0.98) brightness(0.82)",
-                      transitionDuration: shouldReduceMotion ? "0ms" : "900ms",
-                    }}
-                  />
-
-                  <div
-                    className="absolute inset-0 transition-opacity duration-700"
-                    style={{
-                      background: isActive
-                        ? "linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.06) 100%)"
-                        : "linear-gradient(to top, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.22) 60%, rgba(0,0,0,0.10) 100%)",
-                    }}
-                  />
-
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/5 transition-opacity duration-700 group-hover:ring-white/10" />
-
-                  <div className="absolute left-0 right-0 top-0 flex items-center justify-between p-4 sm:p-5">
-                    <span className="border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.28em] text-white/70 backdrop-blur-sm">
-                      {isActive ? "Active" : "Preview"}
-                    </span>
-
-                    <span className="grid h-9 w-9 place-items-center border border-white/15 bg-black/30 text-white/80 backdrop-blur-sm transition group-hover:bg-black/45">
-                      {isActive ? (
-                        <ChevronRightIcon className="h-4 w-4 rotate-90" />
-                      ) : (
-                        <ChevronRightIcon className="h-4 w-4" />
-                      )}
-                    </span>
-                  </div>
-
-                  <div
-                    className="absolute bottom-0 left-0 right-0 p-4 sm:p-6"
-                    style={{
-                      transitionDuration: shouldReduceMotion ? "0ms" : "650ms",
-                    }}
-                  >
-                    {isActive ? (
-                      <div className="max-w-xl">
-                        <p className="text-xs uppercase tracking-[0.3em] text-white/55">
-                          Selected interior
-                        </p>
-                        <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
-                          {item.title}
-                        </h3>
-                        <p className="mt-2 max-w-md text-lg leading-6 text-white/75 sm:text-base">
-                          {item.description}
-                        </p>
-
-                        <div className="mt-5 inline-flex items-center gap-2 border border-white/15 bg-white/10 px-4 py-2 text-lg text-white/90 backdrop-blur-sm">
-                          Tap another panel or swipe
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="flex items-end justify-between gap-3">
-                        <div className="max-w-[8rem] sm:max-w-[10rem]">
-                          <p className="text-[10px] uppercase tracking-[0.28em] text-white/50">
-                            Tap
-                          </p>
-                          <h3 className="mt-1 text-lg font-medium leading-tight text-white/95 sm:text-base">
-                            {item.title}
-                          </h3>
-                        </div>
-
-                        <div className="border border-white/15 bg-white/10 p-2 text-white/90 backdrop-blur-sm transition group-hover:bg-white/15">
-                          <ChevronRightIcon className="h-4 w-4" />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </button>
-              );
-            })}
-          </motion.div>
-
-          {/* Mobile pagination dots */}
-          <div className="mt-5 flex items-center justify-center gap-2 lg:hidden">
-            {portfolioImages.map((item, index) => {
-              const isActive = index === activeIndex;
-
-              return (
-                <button
-                  key={item.src}
-                  type="button"
-                  onClick={() => setActiveIndex(index)}
-                  aria-label={`Go to ${item.title}`}
-                  aria-pressed={isActive}
-                  className={`h-2.5 rounded-full transition-all ${
-                    isActive ? "w-8 bg-white" : "w-2.5 bg-white/35"
-                  }`}
-                />
-              );
-            })}
-          </div>
+              {/* overlay */}
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition" />
+            </motion.div>
+          ))}
         </div>
       </div>
+
+      {/* LIGHTBOX */}
+      <AnimatePresence>
+        {lightbox !== null && (
+          <motion.div
+            initial={reduce ? { opacity: 1 } : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+            onClick={() => setLightbox(null)}
+          >
+            <div
+              className="relative w-full h-full max-w-6xl max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={images[lightbox]}
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority
+              />
+
+              {/* navigation */}
+              <button
+                onClick={() =>
+                  setLightbox((i) =>
+                    i === 0 ? images.length - 1 : (i ?? 0) - 1
+                  )
+                }
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-white/80 text-3xl"
+              >
+                ‹
+              </button>
+
+              <button
+                onClick={() =>
+                  setLightbox((i) =>
+                    i === images.length - 1 ? 0 : (i ?? 0) + 1
+                  )
+                }
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/80 text-3xl"
+              >
+                ›
+              </button>
+
+              <button
+                onClick={() => setLightbox(null)}
+                className="absolute top-4 right-4 text-white/80 text-xl"
+              >
+                ✕
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
