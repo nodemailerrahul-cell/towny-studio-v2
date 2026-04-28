@@ -12,7 +12,7 @@ const images = [
   '/interior-port/1.jpg',
   '/interior-port/2.jpg',
   '/interior-port/3.jpg',
-  // '/interior-port/4.JPG',
+  '/interior-port/4-new.jpg',
   '/interior-port/5.png',
   '/interior-port/6.jpg',
   '/interior-port/7.jpg',
