@@ -5,11 +5,18 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
-  { src: "/home/gallery_img_1.jpg", alt: "Modern living room" },
-  { src: "/home/gallery_img_2.jpg", alt: "Contemporary kitchen" },
-  { src: "/home/gallery_img_3.jpg", alt: "Luxury bedroom" },
-  { src: "/home/gallery_img_4.jpg", alt: "Minimalist bathroom" },
-  { src: "/home/gallery_img_5.jpg", alt: "Modern office space" },
+  { src: "/gallery/1.jpg", alt: "Modern living room" },
+  { src: "/gallery/2.jpg", alt: "Contemporary kitchen" },
+  { src: "/gallery/3.jpg", alt: "Luxury bedroom" },
+  { src: "/gallery/4.jpg", alt: "Minimalist bathroom" },
+  { src: "/gallery/5.jpg", alt: "Modern office space" },
+  { src: "/gallery/6.jpg", alt: "Modern office space" },
+  { src: "/gallery/7.jpg", alt: "Modern office space" },
+  { src: "/gallery/8.jpg", alt: "Modern office space" },
+  { src: "/gallery/9.jpg", alt: "Modern office space" },
+  { src: "/gallery/10.jpg", alt: "Modern office space" },
+  { src: "/gallery/11.jpg", alt: "Modern office space" },
+
 ];
 
 export function GallerySection() {

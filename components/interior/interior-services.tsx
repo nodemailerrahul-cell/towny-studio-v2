@@ -3,46 +3,43 @@
 import { motion } from "framer-motion";
 import {
   Home,
-  Utensils,
-  BedDouble,
-  ShowerHead,
-  Sofa,
   Building,
+  PenTool,
+  Cuboid,
+  Briefcase,
+  Sparkles,
 } from "lucide-react";
 
 const services = [
   {
     icon: Home,
-    title: "Living Rooms",
-    description:
-      "Create welcoming spaces where memories are made and stories are shared.",
-  },
-  {
-    icon: Utensils,
-    title: "Kitchens",
-    description:
-      "Functional yet beautiful kitchens that inspire culinary creativity.",
-  },
-  {
-    icon: BedDouble,
-    title: "Bedrooms",
-    description: "Serene sanctuaries designed for rest and rejuvenation.",
-  },
-  {
-    icon: ShowerHead,
-    title: "Bathrooms",
-    description: "Spa-like retreats that blend luxury with practicality.",
-  },
-  {
-    icon: Sofa,
-    title: "Home Offices",
-    description:
-      "Productive workspaces that balance comfort and professionalism.",
+    title: "Residential Interiors",
+    description: "Villas & Apartments.",
   },
   {
     icon: Building,
-    title: "Commercial",
-    description: "Dynamic interiors that enhance your brand and business.",
+    title: "Commercial Design",
+    description: "Offices, restaurants, retail stores.",
+  },
+  {
+    icon: PenTool,
+    title: "Architecture",
+    description: "Floor plans, elevations, structural design.",
+  },
+  {
+    icon: Cuboid,
+    title: "3D Visualization",
+    description: "See your design before construction.",
+  },
+  {
+    icon: Briefcase,
+    title: "Project Management",
+    description: "From concept to completion.",
+  },
+  {
+    icon: Sparkles,
+    title: "Staging Services",
+    description: "Styling spaces with strong visual impact.",
   },
 ];
 

@@ -9,7 +9,16 @@ import {
 } from '@/components/ui/accordion'
 import { Plus } from 'lucide-react'
 
-const faqs = [
+export type FAQItem = {
+  question: string;
+  answer: string;
+};
+
+interface FAQProps {
+  faqs?: FAQItem[];
+}
+
+const defaultFaqs: FAQItem[] = [
   {
     question: 'What services does Towny Studio offer?',
     answer:
@@ -42,7 +51,8 @@ const faqs = [
   },
 ]
 
-export function FAQ() {
+
+export function FAQ({ faqs: customFaqs }: FAQProps = {}) {
   const shouldReduceMotion = useReducedMotion()
 
   // 🎯 Cursor glow handlers
@@ -92,7 +102,7 @@ export function FAQ() {
           className="max-w-3xl mx-auto"
         >
           <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
+            {(customFaqs || defaultFaqs).map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}

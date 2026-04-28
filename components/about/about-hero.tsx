@@ -19,9 +19,9 @@ export function AboutHero({ shouldReduceMotion }: AboutHeroProps) {
           <h1 className="text-5xl lg:text-7xl font-serif font-bold mb-6 text-balance">
             Where Design Meets Purpose
           </h1>
-          <p className="text-xl text-white/70 leading-relaxed text-balance">
+          {/* <p className="text-xl text-white/70 leading-relaxed text-balance">
             Towny Studio is a multidisciplinary design practice that seamlessly integrates architecture and interior design to deliver complete, cohesive building solutions — rooted in minimalism, clarity, and purposeful simplicity.
-          </p>
+          </p> */}
         </motion.div>
       </div>
     </section>

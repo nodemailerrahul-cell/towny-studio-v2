@@ -49,9 +49,14 @@ export function InteriorHero({ shouldReduceMotion }: InteriorHeroProps) {
           asChild
           size="lg"
           variant="outline"
-          className="rounded-full px-8 text-xl bg-transparent border-white/30 text-white hover:bg-white hover:text-black"
+          className="rounded-full px-8 text-xl border border-white/40 bg-transparent text-white
+                    transition-all duration-300
+                    hover:!bg-white hover:!text-black hover:!border-white
+"
         >
-          <Link href="/architecture">Explore Designs</Link>
+          <Link href="/architecture">
+            Explore Designs
+          </Link>
         </Button>
       </AnimatedContainer>
     </Hero>

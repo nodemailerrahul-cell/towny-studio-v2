@@ -675,21 +675,16 @@ export function Packages() {
 
                     <p className="text-lg text-white/60">{pkg.description}</p>
                   </div>
-
-                  <ul className="space-y-3 mb-8">
-                    {pkg.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                        <span className="text-lg text-white/80">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </button>
 
                 <Button
                   type="button"
                   onClick={() => handleSelectPackage(index)}
-                  className="w-full rounded-full"
+                  className={`w-full rounded-full px-8 text-lg border transition-all duration-300 ${
+                    isActive
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "border-white/40 bg-transparent text-white hover:!bg-white hover:!text-black hover:!border-white"
+                  }`}
                   variant={isActive ? "default" : "outline"}
                 >
                   {isActive ? "Selected" : "View Details"}

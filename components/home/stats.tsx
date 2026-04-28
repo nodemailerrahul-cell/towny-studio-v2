@@ -1,10 +1,10 @@
 import { Building2, Users, Award, Sparkles } from 'lucide-react';
 
 const stats = [
-  { icon: Building2, value: '500+', label: 'Projects Completed' },
-  { icon: Users, value: '350+', label: 'Happy Clients' },
-  { icon: Award, value: '25+', label: 'Awards Won' },
-  { icon: Sparkles, value: '15+', label: 'Years Experience' },
+  { icon: Building2, value: '700+', label: 'Projects Completed' },
+  { icon: Users, value: '750+', label: 'Happy Clients' },
+  { icon: Award, value: '6+', label: 'Awards Won' },
+  { icon: Sparkles, value: '45+', label: 'Years Experience' },
 ];
 
 export function Stats() {
