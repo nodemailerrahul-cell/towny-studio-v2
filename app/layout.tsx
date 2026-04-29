@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, IBM_Plex_Serif, Merriweather } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
@@ -26,32 +26,66 @@ const merriweather = Merriweather({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://townystudio.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.townystudio.com'),
   title: {
     default: 'Towny Studio - Architecture & Interior Design | Bengaluru',
     template: '%s | Towny Studio'
   },
   description: 'Towny Studio is a multidisciplinary design practice integrating architecture and interior design. Rooted in minimalism, we deliver elegant, functional, and timeless spaces in Bengaluru.',
-  keywords: ['Architecture', 'Interior Design', 'Bengaluru Architects', 'Minimalist Design', 'Luxury Interiors', 'Towny Studio'],
-  authors: [{ name: 'Towny Studio' }],
+  keywords: [
+    'Architecture', 
+    'Interior Design', 
+    'Bengaluru Architects', 
+    'Minimalist Design', 
+    'Luxury Interiors', 
+    'Towny Studio',
+    'Residential Architecture',
+    'Commercial Interiors'
+  ],
+  authors: [{ name: 'Towny Studio', url: 'https://www.townystudio.com' }],
   creator: 'Towny Studio',
   publisher: 'Towny Studio',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://townystudio.com',
+    url: 'https://www.townystudio.com',
     title: 'Towny Studio - Architecture & Interior Design',
     description: 'Towny Studio is a multidisciplinary design practice integrating architecture and interior design. Rooted in minimalism, we deliver elegant, functional, and timeless spaces in Bengaluru.',
     siteName: 'Towny Studio',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Towny Studio - Architecture & Interior Design',
+      }
+    ]
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Towny Studio - Architecture & Interior Design',
     description: 'Towny Studio is a multidisciplinary design practice integrating architecture and interior design. Rooted in minimalism, we deliver elegant, functional, and timeless spaces in Bengaluru.',
+    creator: '@townystudio',
+    images: ['/twitter-image.jpg'],
   },
   robots: {
     index: true,
@@ -64,7 +98,13 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  generator: 'quantech.pro',
+  applicationName: 'Towny Studio',
+  appleWebApp: {
+    capable: true,
+    title: 'Towny Studio',
+    statusBarStyle: 'default',
+  },
+  generator: 'Next.js',
   icons: {
     icon: [
       {
@@ -81,6 +121,7 @@ export const metadata: Metadata = {
       },
     ],
     apple: '/apple-icon.png',
+    shortcut: '/favicon.ico',
   },
 }
 
