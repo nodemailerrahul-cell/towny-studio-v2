@@ -54,7 +54,7 @@ export function InteriorHero({ shouldReduceMotion }: InteriorHeroProps) {
                     hover:!bg-white hover:!text-black hover:!border-white
 "
         >
-          <Link href="/architecture">
+          <Link href="/contact#contact">
             Explore Designs
           </Link>
         </Button>

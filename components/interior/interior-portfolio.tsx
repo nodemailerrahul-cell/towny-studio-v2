@@ -107,7 +107,7 @@ export function InteriorPortfolio({ shouldReduceMotion }: Props) {
   }, [lightbox, goPrev, goNext, closeLightbox]);
 
   return (
-    <section className="py-10 lg:py-16">
+    <section id='interior-portfolio' className="py-10 lg:py-16 scroll-mt-20">
       <div className="mx-auto max-w-7xl px-3 sm:px-5">
         {/* ── HEADER ─────────────────────────────── */}
         <div className="mb-8 lg:mb-12 text-center">

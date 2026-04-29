@@ -111,7 +111,7 @@ export function ContactCta({ shouldReduceMotion }: ContactCtaProps) {
               className={`${cardBase} p-0 overflow-hidden hover:border-emerald-500/30`}
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.1259540387896!2d77.60200857436594!3d12.963791215050888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae156ab72e9cdd%3A0x4bc98be0302f568b!2sTowny%20Studio!5e0!3m2!1sen!2sin!4v1777298911264!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.4624411391483!2d77.638362!3d12.8779586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6b5f862a1c9f%3A0x59bce203e88a920d!2sTowny%20Studio!5e0!3m2!1sen!2sin!4v1777464858733!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -127,3 +127,4 @@ export function ContactCta({ shouldReduceMotion }: ContactCtaProps) {
     </section>
   );
 }
+

@@ -16,7 +16,7 @@ export default function ContactPage() {
       <ContactInfo shouldReduceMotion={shouldReduceMotion} />
 
       {/* Contact Form + Studio Visit */}
-      <section className="py-20 lg:py-28 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
+      <section id='contact' className="py-20 lg:py-28 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
         <ContactFormSection shouldReduceMotion={shouldReduceMotion} />
       </section>
 
