@@ -7,6 +7,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { ContactModal } from "@/components/contact/contact-modal";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -70,12 +71,12 @@ export function Navigation() {
                 className="relative"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/logo_white.jpeg"
+                <Image
+                  src="/logo.png"
                   alt="Towny Studio – Architect | Interior | Life Style"
-                  width={148}
-                  height={60}
-                  className="h-11 lg:h-14 w-auto object-contain drop-shadow-[0_1px_6px_rgba(255,255,255,0.08)] transition-opacity duration-300 group-hover:opacity-90"
+                  width={700}
+                  height={700}
+                  className="h-12 lg:h-16 w-auto object-contain drop-shadow-[0_1px_6px_rgba(255,255,255,0.08)] transition-opacity duration-300 group-hover:opacity-90"
                 />
               </motion.div>
             </Link>

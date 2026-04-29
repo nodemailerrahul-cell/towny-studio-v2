@@ -8,6 +8,7 @@ import {
   Phone,
   Twitter,
 } from "lucide-react";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -21,12 +22,12 @@ export function Footer() {
               aria-label="Towny Studio – Home"
               className="inline-block mb-5 group"
             >
-              <img
-                src="/logo_white.jpeg"
+              <Image
+                src="/logo.png"
                 alt="Towny Studio – Architect | Interior | Life Style"
-                width={160}
-                height={64}
-                className="h-16 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                width={700}
+                height={700}
+                className="h-24 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
               />
             </Link>
 
